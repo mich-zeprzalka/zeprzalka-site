@@ -1,0 +1,434 @@
+---
+title: "Vibe Coding: Budujemy Cyberpunkowy Dashboard Dronów (Next.js + AI)"
+description: "Masz tylko VS Code i chęci? To wystarczy. Pokażę Ci, jak zainstalować środowisko (Node.js), postawić profesjonalny stack Next.js + Shadcn UI i użyć AI, aby w godzinę zbudować Centrum Dowodzenia Flotą Dronów."
+date: "2026-01-15"
+categories: ["Next.js", "AI", "Frontend", "Shadcn UI"]
+tags: ["Next.js", "Shadcn UI", "Vibe Coding", "Dashboard", "AI", "Tutorial"]
+image: "/blog/dashboard.jpg"
+imageCaption: "Neo-Warsaw Command Center: Wizualizacja danych w czasie rzeczywistym."
+featured: true
+author:
+  name: "zeprzalka.com"
+  title: "Digital Solutions Architect"
+  bio: "Tworzę rozwiązania łączące biznes z technologią."
+  avatar: "/avatar.png"
+---
+
+Witajcie w przyszłości! 🛸
+
+Dziś nie będziemy uczyć się "suchej teorii". Dziś zrobimy **Vibe Coding**.
+Celem jest zbudowanie **Centrum Dowodzenia Flotą Dronów Dostawczych** dla futurystycznej Warszawy. Brzmi dość skomplikowanie? Wystarczy Wam jednak kilka skutecznych promtów, aby dodać wspaniały Dashboard do swojego portfolio.
+
+Założenie jest proste: Masz czysty komputer, zainstalowany edytor VS Code i niewielką wiedzę o tym, jak zarządzać paczkami.
+Przeprowadzę Cię przez proces instalacji "silnika" (Node.js), konfigurację "nadwozia" (Next.js + Shadcn) i odpalenie "autopilota" (AI Prompting).
+
+Zapnijcie pasy. Lecimy! 🚀
+
+---
+
+## 🛠️ Faza 0: Przygotowanie Maszyny (Node.js)
+
+Masz VS Code? Super. Ale VS Code to tylko edytor kodu. Żeby uruchomić nowoczesny frontend, potrzebujesz środowiska uruchomieniowego.
+
+Jeśli wpiszesz w terminalu `npm` i zobaczysz błąd – musisz wykonać ten krok.
+
+### Instalacja Node.js (Twój Silnik)
+
+1. Wejdź na stronę **[nodejs.org](https://nodejs.org/)**.
+2. Pobierz wersję **LTS** (Long Term Support) – to wersja stabilna, "cywilna".
+3. Zainstaluj ją jak każdy inny program (Next, Next, Finish).
+
+### Weryfikacja
+
+Otwórz terminal w VS Code (`Ctrl + ~`) i wpisz:
+
+```bash
+node -v
+npm -v
+```
+
+Jeśli widzisz numerki (np. v20.10.0), to znaczy, że masz silnik i menedżera paczek (npm). Możemy startować.
+
+---
+
+## 🏗️ Faza 1: Instalacja Next.js + Shadcn UI
+
+Nie będziemy tworzyć folderów ręcznie. Zrobimy to jak profesjonaliści, instalując wszystko w bieżącym katalogu.
+
+### Krok 1: Inicjalizacja Next.js
+
+Otwórz terminal w folderze, w którym chcesz mieć projekt (np. `C:\Projekty\Drone-Dashboard`) i wpisz:
+
+```bash
+npx create-next-app@latest .
+```
+
+⚠️ **Ważne:** Zauważ tę kropkę `.` na końcu. Oznacza ona "zainstaluj TUTAJ, nie twórz nowego folderu".
+
+**Konfiguracja (Wybierz dokładnie tak):**
+
+- TypeScript: **Yes** (Standard w 2025)
+- ESLint: **Yes**
+- Tailwind CSS: **Yes** (Kluczowe!)
+- src/ directory: **Yes**
+- App Router: **Yes**
+- Customize import alias (@/\*): **Yes**
+
+(obecnie jest możliwość zaznaczenia ustawień rekomendowanych)
+
+### Krok 2: Instalacja Shadcn UI
+
+Gdy instalacja Next.js się zakończy, w tym samym terminalu wpisz:
+
+```bash
+npx shadcn@latest init
+```
+
+**Wybory w kreatorze:**
+
+- Style: **New York** (lub inny dowolny)
+- Base Color: **Slate** lub **Zinc**
+- CSS Variables: **Yes**
+
+(obecnie również w tej instalacji są opcje rekomendowane)
+
+### Krok 3: Instalacja komponentów (opcjonalnie w celach testów)
+
+Shadcn nie instaluje wszystkiego na raz. Dodajmy to, czego potrzebujemy do dashboardu:
+
+```bash
+npx shadcn@latest add card button badge table progress separator avatar sheet chart
+```
+
+Radzę raczej wymienić przykładowe komponenty w promcie, który wpiszemy później
+
+---
+
+## 💾 Faza 2: Dane (Paliwo dla Aplikacji)
+
+Zanim poprosimy AI o wygenerowanie widoku, musimy dać mu dane. AI nie zgadnie, jak wygląda nasz dron. Stwórzmy plik z danymi (Mock Data).
+
+1. W folderze `src` utwórz nowy folder `data`.
+2. W środku stwórz plik `drones.json` lub inna dowolna nazwa.
+3. Wklej do niego poniższą zawartość:
+
+```json
+[
+  {
+    "id": "DRN-001",
+    "callsign": "Alpha-Vulture",
+    "status": "delivering",
+    "battery": 42,
+    "location": "Mokotów, Cyber-Hub",
+    "load": "Pizza Pepperoni (x2)",
+    "lastMaintenance": "2026-01-10"
+  },
+  {
+    "id": "DRN-002",
+    "callsign": "Beta-Hawk",
+    "status": "idle",
+    "battery": 95,
+    "location": "Centrum, Baza Główna",
+    "load": "Brak",
+    "lastMaintenance": "2026-01-12"
+  },
+  {
+    "id": "DRN-003",
+    "callsign": "Gamma-Sparrow",
+    "status": "returning",
+    "battery": 15,
+    "location": "Wola, Strefa Zrzutu",
+    "load": "Brak",
+    "lastMaintenance": "2025-12-28"
+  },
+  {
+    "id": "DRN-004",
+    "callsign": "Delta-Eagle",
+    "status": "maintenance",
+    "battery": 0,
+    "location": "Serwis Żoliborz",
+    "load": "Uszkodzony silnik",
+    "lastMaintenance": "2025-11-30"
+  },
+  {
+    "id": "DRN-005",
+    "callsign": "Omega-Falcon",
+    "status": "delivering",
+    "battery": 67,
+    "location": "Praga Północ, Sektor 4",
+    "load": "Leki Pilne",
+    "lastMaintenance": "2026-01-14"
+  },
+  {
+    "id": "DRN-006",
+    "callsign": "Zeta-Raven",
+    "status": "idle",
+    "battery": 88,
+    "location": "Ursynów, Pętla",
+    "load": "Brak",
+    "lastMaintenance": "2026-01-05"
+  },
+  {
+    "id": "DRN-007",
+    "callsign": "Sigma-Owl",
+    "status": "delivering",
+    "battery": 24,
+    "location": "Wilanów, Pałac",
+    "load": "Kebab Box XL",
+    "lastMaintenance": "2026-01-15"
+  },
+  {
+    "id": "DRN-008",
+    "callsign": "Theta-Kestrel",
+    "status": "returning",
+    "battery": 8,
+    "location": "Ochota, Kampus",
+    "load": "Brak",
+    "lastMaintenance": "2026-01-02"
+  },
+  {
+    "id": "DRN-009",
+    "callsign": "Iota-Swift",
+    "status": "maintenance",
+    "battery": 100,
+    "location": "Serwis Centrum",
+    "load": "Kalibracja GPS",
+    "lastMaintenance": "2025-12-15"
+  },
+  {
+    "id": "DRN-010",
+    "callsign": "Kappa-Heron",
+    "status": "delivering",
+    "battery": 55,
+    "location": "Białołęka, Port",
+    "load": "Części Zamienne",
+    "lastMaintenance": "2026-01-11"
+  }
+]
+```
+
+---
+
+## 🧠 Faza 3: AI Prompting (The Senior Architect)
+
+Teraz najważniejszy moment. Nie będziemy pisać kodu ręcznie linijka po linijce. Użyjemy modelu AI (Claude Sonnet, GPT, DeepSeek lub inny dowolny), aby złożył nam to w całość.
+
+Ale uwaga: **Jakość promptu determinuje jakość kodu**. Poniżej znajdziesz prompt stworzony w oparciu o najlepsze praktyki inżynierii (Role-Playing, Context, Constraints).
+
+### Gdzie używać AI? Przewodnik po narzędziach
+
+Masz kilka opcji korzystania z AI przy tworzeniu kodu. Wybór zależy od budżetu i preferencji:
+
+**1. Modele w CLI (Terminal)**
+Jeśli chcesz pracować bezpośrednio w terminalu, możesz użyć narzędzi jak:
+
+- **Claude CLI** - dostęp do modeli Anthropic przez wiersz poleceń
+- **OpenAI API** - integracja z GPT przez terminal
+- **Ollama** - lokalne modele AI (darmowe, ale wymagają mocy obliczeniowej)
+
+Instalacja jest prosta, a w internecie znajdziesz szczegółowe instrukcje dla każdego narzędzia.
+
+**2. Wtyczki do VS Code (REKOMENDACJA)**
+To najwygodniejsza opcja dla większości developerów:
+
+- **GitHub Copilot** (10 USD/miesiąc / istnieją promocje dla studentów)
+
+  - Najlepszy stosunek ceny do jakości
+  - Świetnie radzi sobie z kontekstem całego projektu
+  - Autouzupełnianie w czasie rzeczywistym
+  - Chat panel wbudowany w VS Code
+
+- **Cursor** (darmowy tier + płatne plany)
+
+  - Fork VS Code zoptymalizowany pod AI
+  - Tryb "Composer" do edycji wielu plików jednocześnie
+  - Świetny do większych refaktorów
+
+**Moja rekomendacja:** Zacznij od **GitHub Copilot**. Jest intuicyjny, działa od razu "out of the box" i nie musisz konfigurować kluczy API. Gdy poczujesz, że potrzebujesz więcej, wypróbuj również Cursor.
+
+### 📋 PROMPT DO SKOPIOWANIA
+
+Skopiuj całość i wklej do swojego asystenta AI:
+
+````markdown
+Jesteś Senior Frontend Architektem i UI Designerem ze specjalnością w "Pixel-Perfect" Design Systems. Tworzymy aplikację dashboardową: "Neo-Warsaw Drone Command Center".
+
+Twoim celem jest stworzenie kodu, który wygląda jak produkt klasy premium (jak Linear, Vercel Dashboard, interfejsy największych aplikacji). Jesteśmy wizualnymi purystami.
+
+JESTEŚ W FOLDRZE Z PODSTAWOWĄ INSTALACJĄ CZYSTEGO NEXT.JS + SHADCN. Wszystko jest zainstalowane i gotowe do pracy. Masz również plik ze zmockowanymi danymi: src/data/drones.json - skorzystaj z nich
+
+### 1. STACK TECHNOLOGICZNY (Ścisłe przestrzeganie)
+
+- **Framework:** Next.js (App Router, TypeScript).
+- **UI Kit:** shadcn/ui (używamy komponentów: Card, Sheet, Button, Table, Avatar, Separator, Badge, Progress i innych potrzebnych w aplikacji).
+- **Wykresy:** shadcn/ui charts (bazujące na Recharts) - TO JEST WYMÓG KONIECZNY, ale możemy użyć dodatkowych bibliotek jedynie w ramach konieczności.
+- **Style:** Tailwind CSS (z wykorzystaniem zmiennych CSS shadcn dla themingu). Jeżeli będą konieczne, ale uważam, ze dashboard powinien mieć lekko cyberpunkowy neonowy charakter.
+- **Ikony:** Lucide React.
+- **Dane:** Import z pliku lokalnego `src/data/drones.json`. Masz tam już wszystkie potrzebne dane
+
+### 2. ZASADY DESIGNU (VISUAL PURITY)
+
+RESPONSIVE DASHBOARD!
+
+- **Motyw:** Dark Mode Only. Estetyka "Clean Cyberpunk" (ciemne tła, subtelne akcenty neonowe, ale bez kiczu).
+- **Layout:**
+  - Desktop: Sidebar po lewej (fixed) z nawigacją, content po prawej.
+  - Mobile: Topbar z Hamburger menu (otwiera shadcn Sheet), content poniżej.
+- **Estetyka:**
+  - Minimalizm, dużo "whitespace" (paddingi p-6 lub p-8 - równe odstępy zachowanie gridu).
+  - Subtelne obramowania (`border-border/40 ale możemy je pominąć, jeżeli uznasz to za słuszne`).
+  - Hierarchia typografii (użyj `text-muted-foreground` dla opisów, fonty techniczne).
+  - Zaokrąglenia zgodne z domyślnym `radius` shadcn (nie mieszaj promieni).
+  - Statusy:
+    - Delivering: Emerald/Green (z efektem pulsowania jeśli możliwe).
+    - Maintenance: Destructive/Red.
+    - Returning: Amber/Yellow.
+    - Idle: Slate/Gray.
+
+### 3. DANE (Kontekst)
+
+Dane znajdują się w `src/data/drones.json`.
+Struktura danych (Interfejs):
+
+```typescript
+export interface Drone {
+  id: string
+  callsign: string
+  status: "idle" | "delivering" | "returning" | "maintenance"
+  battery: number // 0-100
+  location: string
+  load: string
+  lastMaintenance: string
+}
+
+### 4. ZADANIA DO WYKONANIA (Krok po kroku)
+
+**Krok 1: Przygotowanie Typów i Utils**
+
+- Stwórz plik `src/types/index.ts` z interfejsem Drone.
+- Stwórz helpery obliczające:
+  - Liczbę aktywnych dronów.
+  - Średni poziom naładowania floty.
+  - Liczbę dronów w serwisie.
+  - inne ciekawe dane, które możesz wyciągnąć z json.
+
+**Krok 2: Komponenty Dashboardu**
+Zbuduj widok główny (`src/app/page.tsx`) składający się z 3 sekcji:
+
+1. **Sekcja KPI (Góra):** 4 Karty (Shadcn Card) z ikonami Lucide.
+   - Total Drones, Active Deliveries, Fleet Health (średnia bateria), Critical Alerts (bateria < 20%) - możesz dodać coś od siebie.
+2. **Fleet Overview Chart (Środek - 1/3 szerokości):**
+   - Wykres kołowy (Donut Chart z `shadcn/ui charts`) pokazujący podział dronów wg statusu.
+   - Legenda i Tooltip muszą być spójne stylowo.
+3. **Active Fleet Grid (Środek/Dół - reszta szerokości):**
+   - Grid kart dronów (nie tabela!).
+   - Każda karta zawiera:
+     - Header: Callsign + Badge Statusu.
+     - Body: Pasek Baterii (Progress bar zmieniający kolor: Green > 40%, Yellow > 20%, Red < 20%).
+     - Footer: Lokalizacja i Ładunek (małym drukiem `text-muted-foreground`).
+
+### OCZEKIWANY OUTPUT
+
+Wypisz mi gotowy kod w kolejności:
+
+1. `src/types/index.ts`
+2. `src/app/page.tsx` (kompletny widok dashboardu z importami i logiką).
+   Kod ma być gotowy do wklejenia ("Copy-Paste Ready") i w pełni otypowany.
+```
+````
+
+---
+
+## 🚀 Faza 4: Uruchomienie i Debugowanie
+
+Po otrzymaniu kodu od AI:
+
+1. Otwrzymałeś gotową Aplikację! Jeżeli korzystałeś z modeli zewnętrznie w przeglądarce wklej kod do odpowiednich plików (głównie `src/app/page.tsx`).
+
+2. Uruchom serwer developerski:
+
+```bash
+npm run dev
+```
+
+3. Otwórz przeglądarkę na `http://localhost:3000`. Powinieneś zobaczyć swoje centrum dowodzenia!
+
+### 🔧 Co jeśli coś nie działa? (Troubleshooting)
+
+**Częsty błąd:** "Unable to acquire lock" lub "Port 3000 is in use". Oznacza to, że stary proces node.js nie zamknął się poprawnie.
+
+**Rozwiązanie** (w terminalu PowerShell):
+
+```powershell
+taskkill /F /IM node.exe
+```
+
+A następnie ponownie `npm run dev`.
+
+---
+
+## 🗄️ Faza 5: Od JSON do Prawdziwej Bazy Danych
+
+Gratulacje! Masz działający dashboard. Ale dane w pliku JSON to tylko mock - w prawdziwej aplikacji potrzebujesz bazy danych.
+
+Dla tego projektu polecam **bezserwerowe bazy danych** (serverless), które:
+
+- ✅ Mają darmowy tier (idealny na start)
+- ✅ Automatycznie skalują się z projektem
+- ✅ Nie wymagają konfiguracji infrastruktury
+- ✅ Integrują się z Next.js w kilka minut
+
+### Opcja 1: Supabase (PostgreSQL as a Service)
+
+**[Supabase](https://supabase.com/)** to open-source'owa alternatywa dla Firebase, oparta na PostgreSQL.
+
+**Dlaczego Supabase?**
+
+- 🆓 Darmowy tier: 500 MB bazy danych, 1 GB transferu, 50 MB storage
+- 🔐 Wbudowane auth (logowanie użytkowników)
+- 📡 Real-time subscriptions (dane aktualizują się na żywo)
+- 🛠️ Panel administracyjny (jak phpMyAdmin, ale lepszy)
+- 📚 Świetna dokumentacja i SDK dla Next.js
+
+**Kiedy wybrać Supabase:**
+
+- Potrzebujesz relacyjnej bazy danych (tabele z kluczami obcymi)
+- Chcesz użyć SQL do zapytań
+- Planujesz dodać autentykację użytkowników
+
+### Opcja 2: InstantDB (Ultra-minimalistyczna alternatywa)
+
+**[InstantDB](https://www.instantdb.com/)** to nowa generacja baz danych - pisana od zera dla React/Next.js.
+
+**Dlaczego InstantDB?**
+
+- 🆓 Darmowy tier: do 100k operacji miesięcznie
+- ⚡ Najmniejsza krzywą uczenia się (dosłownie 3 linijki kodu)
+- 🔄 Real-time out of the box (bez konfiguracji)
+- 🎯 TypeScript-first (autouzupełnianie IDE)
+- 📦 Brak schematów - dodajesz dane i działa
+
+**Kiedy wybrać InstantDB:**
+
+- Chcesz najmniejszej ilości boilerplate'u
+- Cenisz sobie "magię" - wszystko działa od razu
+- Projekt to MVP/prototyp (szybkie iteracje)
+
+### Moja Rekomendacja
+
+**Dla tego projektu:** Zacznij od **Supabase**.
+
+- Darmowy tier wystarczy na lata
+- Nauczysz się PostgreSQL (standard w branży)
+- Łatwo później zmigrować do własnej instancji
+- Społeczność i materiały edukacyjne są ogromne
+
+---
+
+## 📚 Bibliografia i Inspiracje
+
+Ten projekt to dopiero początek. Aby wejść głębiej w temat nowoczesnego stacku i podejścia "Vibe Coding", polecam te dwa materiały wideo. To absolutna baza wiedzy:
+
+- **[AI Coding Crash Course](https://www.youtube.com/watch?v=2FJlhoDYNPE)** – Ciekawy tutorial jak uzupełnić swoje portfolio AI.
+
+- **[Vibe Coding - Dashboard z Google AI Studio](https://www.youtube.com/watch?v=quVoGwHZdYI)** – Zobacz przykład wygenerowania Dashboardu

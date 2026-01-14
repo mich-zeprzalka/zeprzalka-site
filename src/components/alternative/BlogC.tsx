@@ -32,13 +32,15 @@ export function BlogC() {
               >
                 <Card className="relative h-[450px] overflow-hidden rounded-xl border-2 border-transparent transition-all duration-500 ease-in-out hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20">
                   {/* Tło z obrazkiem i efektem zoomu */}
-                  <Image
-                    src={post.frontmatter.image}
-                    alt={post.frontmatter.title}
-                    fill
-                    className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+                  {post.frontmatter.image && (
+                    <Image
+                      src={post.frontmatter.image}
+                      alt={post.frontmatter.title}
+                      fill
+                      className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  )}
 
                   {/* Gradient dla czytelności tekstu */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>

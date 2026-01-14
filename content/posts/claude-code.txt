@@ -1,0 +1,2 @@
+/ - włącza komendy w CLI np Claude
+instantdb
