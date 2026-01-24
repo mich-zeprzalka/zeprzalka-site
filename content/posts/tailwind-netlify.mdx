@@ -1,0 +1,142 @@
+---
+title: "Twój Pierwszy Projekt: Interaktywne CV i Wizytówka WWW w 60 Minut"
+description: "W dzisiejszych czasach wiele osób chce posiadać własną markę osobistą. Zamień z pomocą AI zwykłe CV w profesjonalną stronę internetową, którą zachwycisz pracodawcę. Od pustego pliku do gotowej zakodowanej strony strony, za pomocą promptu!"
+date: "2026-01-24"
+categories: ["Web Development", "AI", "Personal Branding"]
+tags: ["HTML", "Tailwind CSS", "AI Prompting", "Netlify", "Portfolio", "CV"]
+image: "/blog/tailwind-netlify.jpg"
+imageCaption: "Twoja cyfrowa wizytówka gotowa w godzinę."
+featured: true
+author:
+  name: "zeprzalka.com"
+  title: "Digital Solutions Architect"
+  bio: "Tworzę rozwiązania łączące biznes z technologią."
+  avatar: "/avatar.png"
+---
+
+Witajcie na dzisiejszych zajęciach! 🚀
+
+Rynek pracy, szczególnie w obszarze mediów i marketingu, wymaga czegoś więcej niż pliku PDF lub DOC wysłanego mailem. Dziś liczy się **Personal Branding**.
+
+Wyobraźcie sobie, że zamiast zwykłego dokumentu, wysyłacie rekruterowi link do nowoczesnej, interaktywnej strony, która idealnie wyświetla się na jego smartfonie. To właśnie zrobimy w ciągu najbliższych 60 minut.
+
+Nie musicie być programistami. Wykorzystamy podejście hybrydowe: Waszą wiedzę o sobie oraz potęgę AI, by stworzyć produkt na poziomie "Senior Level".
+
+---
+
+## 🧰 Czego użyjemy? (Słowniczek dla Laika)
+
+Zanim zaczniemy, wyjaśnijmy sobie trzy pojęcia, które sprawią, że poczujecie się pewniej. Rozmawialiśmy już wstępnie o nich w poprzednich postach:
+
+1.  **HTML**: To "szkielet" Waszej strony. To tutaj znajduje się treść: Wasze dane, informacje o doświadczeniu, linki oraz inne potrzebne rzeczy.
+2.  **Tailwind CSS (przez CDN)**: To "magiczne pudełko z opcjami wyglądu waszej aplikacji". Pozwala nam nadawać stronie wygląd (kolory, fonty, odstępy) bez tworzenia osobnych, skomplikowanych plików ze stylem. Wszystko dzieje się wewnątrz jednego pliku!
+3.  **Netlify**: Nasz "program do wyświetlenia CV". To darmowa platforma, która weźmie Wasz plik z komputera i w kilka sekund opublikuje go w globalnej sieci pod unikalnym adresem(subdomeną).
+
+---
+
+## 📝 Plan Działania: Krok po Kroku
+
+### Krok 1: Przygotuj wsad (Twoje CV)
+
+Otwórz swoje obecne CV. Skopiuj z niego najważniejsze sekcje: O mnie, Doświadczenie, Edukacja, Umiejętności i Kontakt. AI potrzebuje tych danych, aby "wiedzieć", o czym budować stronę. Równie dobrze możesz wkleić całe CV, ale jest to pójście na skróty. Proponuje maksymalnie dopracować to co chcecie mieć na swojej stronie dobry input = dobry output.
+
+### Krok 2: Użyj "Mistrzowskiego Promptu"
+
+Ten prompt został skonstruowany według profesjonalnego frameworka **CRISPE**, aby zapewnić najwyższą jakość designu i kodu.
+
+> **MISTRZOWSKI PROMPT DO TWOJEJ WIZYTÓWKI:**
+>
+> **(CR) ROLA:** Jesteś elitarnym UI/UX Designerem i Lead Frontend Developerem. Twoim celem jest stworzenie nowoczesnej, minimalistycznej strony personal brandingowej (Digital Business Card / Personal Website), która wygląda jak projekty z serwisu Awwwards, Behance.
+>
+> **(I) KONTEKST:** Użytkownik to student, który chce dzięki nowej stronie internetowej znaleźć lepszą pracę i zachwycić przyszłego pracodawcę. Strona ma być jego interaktywnym CV. Musi budować zaufanie, pokazywać profesjonalizm i nowoczesne podejście do technologii.
+> Inspiracja stylem: czysty layout, dużo "oddechu" (whitespace), elegancka typografia. W oparciu o zasady rządzące najlepszymi Design Systemami i UI Kit'ami.
+>
+> **(S) ZADANIE:** Wygeneruj **jeden, kompletny plik index.html**.
+>
+> - Użyj **Tailwind CSS zaimportowanego przez CDN** (wszystko musi działać z pozycji jednego pliku HTML).
+> - Cała strona musi być w tym jednym pliku (żadnych dodatkowych plików .css czy .js, wszelkie ewentualne dodatki bezpośrednio w HTML).
+> - Struktura:
+>   1. **Hero Section**: Moje imię i nazwisko, chwytliwy slogan (Headline), przycisk do pobrania PDF oraz linki do LinkedIn/Social Media (przycisk powinien linkować do pliku /CV.pdf umieszczonego w folderze strony [folder główny bez podfolderów]).
+>   2. **O mnie**: Krótka, inspirująca biografia.
+>   3. **Doświadczenie & Edukacja**: Elegancka oś czasu, siatka (grid), punktowana lista. W zależności od objętości doświadczenia w pracy i edukacji.
+>   4. **Skills**: Nowoczesne tagi/pigułki z umiejętnościami.
+>   5. **Kontakt**: Prosta sekcja z mailem i numerem telefonu.
+>
+> **(P) STYL I DESIGN SYSTEM:**
+>
+> - **Kolory**: Główny kolor: [Wstaw kolor, np. Głęboki granat #0f172a], Tło: Jasne/Białe, Akcent: [Wstaw kolor, np. Złoty lub Błękit].
+> - **Typografia**: Nagłówki - Serif (np. Playfair Display), Treść - Sans-serif (np. Inter).
+> - **Efekty**: Delikatne cienie (soft shadows), płynne przejścia (transitions) przy najechaniu na przyciski.
+> - **Responsywność**: Strona musi być perfekcyjna na telefonie (Mobile-First) oraz innych urządzeniach. Full Responsive.
+>
+> **(E) DANE DO WSTAWIENIA:** [TUTAJ WKLEJ TREŚĆ SWOJEGO CV]
+
+Aby zamienić ten tekst w gotowy kod, potrzebujecie dostępu do potężnych modeli językowych (LLM) lub dedykowanych generatorów wizualnych. Oto najlepsze opcje dostępne w 2026 roku:
+
+#### 1. Najlepsze Modele Językowe (Chatboty)
+
+- **[Claude.ai (Anthropic)](https://claude.ai/)** – **👑 Król Kodowania.** Obecnie uznawany za najdokładniejszy model w pisaniu czystego kodu Tailwind CSS i HTML[cite: 19]. [cite_start]Funkcja "Artifacts" pozwoli Wam zobaczyć podgląd strony od razu w oknie czatu[cite: 20].
+- **[DeepSeek](https://chat.deepseek.com/)** – **🦄 Czarny Koń.** Model, który wstrząsnął rynkiem, oferując niesamowitą wydajność często całkowicie za darmo[cite: 21]. [cite_start]Świetnie radzi sobie z logiką i szybkimi skryptami[cite: 22].
+- **[ChatGPT (OpenAI)](https://chatgpt.com/)** – **🛠️ Wszechstronny Scyzoryk.** Najlepszy do analizy Waszego przesłanego pliku CV i wyciągania z niego esencji[cite: 23]. [cite_start]Jeśli macie screenshot swojego starego CV, model Vision go precyzyjnie przeanalizuje[cite: 24].
+- **[Gemini (Google)](https://gemini.google.com/)** – **📚 Bibliotekarz.** Dzięki ogromnemu oknu kontekstowemu możecie mu wkleić nie tylko CV, ale i dziesiątki swoich projektów jako bazę do portfolio[cite: 25, 26, 27].
+- **[LM Arena (LMSYS)](https://lmarena.ai/)** – Otwarta arena rankingowa, gdzie społeczność wybiera najlepsze modele[cite: 28]. [cite_start]W zakładce "Direct Chat" możecie przetestować topowe modele świata zupełnie za darmo[cite: 29].
+
+#### 2. Generative UI (Widzisz kod w czasie rzeczywistym)
+
+To narzędzia stworzone specjalnie do budowania interfejsów „na żywo” bezpośrednio z opisu tekstowego:
+
+- **[v0.dev (Vercel)](https://v0.dev/)** – **Standard w React/Tailwind.** Narzędzie od twórców Next.js, które generuje zoptymalizowane komponenty idealnie pasujące do nowoczesnego stacku technologicznego[cite: 31, 32].
+- **[Bolt.new (StackBlitz)](https://bolt.new/)** – **Full-Stack w przeglądarce.** Pozwala edytować kod, instalować biblioteki i podglądać projekt w czasie rzeczywistym, bez wychodzenia z przeglądarki[cite: 33, 34].
+- **[Lovable.dev](https://lovable.dev/)** – Narzędzie stawiające na **estetykę i UX**. [cite_start]Idealne, gdy zależy Wam na profesjonalnym designie i efekcie "wow" od pierwszej sekundy[cite: 35, 36].
+
+#### 3. „Sekretne” darmowe dostępy i agregatory
+
+Jeśli skończą Wam się darmowe wiadomości na powyższych stronach, skorzystajcie z tych opcji:
+
+- **[Google AI Studio](https://aistudio.google.com/)** – Profesjonalne narzędzie od Google, dające darmowy dostęp programistyczny do najmocniejszych modeli Gemini 1.5 Pro.
+- **[Phind](https://www.phind.com/)** – Wyszukiwarka AI stworzona specjalnie dla programistów. Bardzo precyzyjna w rozwiązywaniu technicznych problemów z kodem.
+- **[Poe.com](https://poe.com/)** – Platforma dająca dostęp do wielu modeli (GPT-4, Claude, Llama) w jednym miejscu, z wygodnymi dziennymi limitami.
+- **[HuggingChat](https://huggingface.co/chat/)** – Całkowicie darmowa platforma od Hugging Face, dająca dostęp do najlepszych modeli Open Source (np. Llama 3 czy Qwen).
+
+#### 4. Błyskawiczne generatory Landing Page
+
+Dla tych, którzy potrzebują kompletnej struktury w kilkanaście sekund:
+
+- **[Durable](https://durable.co/)** – Pozwala zbudować podstawowy szkielet strony biznesowej w około 30 sekund[cite: 378].
+- **[Loopple AI](https://loopple.com/ai)** – Umożliwia budowanie sekcji strony z gotowych bloków za pomocą prostych poleceń tekstowych.
+
+---
+
+**💡 Pro-Tip:** Jeśli model AI "utknie" lub wygeneruje błąd w kodzie, po prostu skopiuj treść błędu z przeglądarki i wklej ją z powrotem do czatu. AI naprawi swój błąd i poda Ci poprawną wersję pliku w kilka sekund!
+
+### Krok 3: Poprawki i Szlify
+
+Jeśli coś Ci się nie podoba, nie zmieniaj kodu ręcznie. Napisz do AI: _"Zmień kolor tła na delikatny szary"_ lub _"Zwiększ odstępy między sekcjami doświadczenia"_. Ważne jest to, aby komunikować się z algorytmem w sposób jasny, klarowny i precyzyjny.
+
+---
+
+## 🚀 Publikacja: Twoja Strona "Na Żywo" w 5 Sekund!
+
+Masz już kod od AI? Zapisz go na komputerze w folderze jako plik o nazwie **index.html** Możesz to zrobić za pomocą Visual Studio Code, a nawet zwykłago notatnika.
+
+1.  Wejdź na stronę **[Netlify](https://app.netlify.com)** i załóż konto.
+1.  Wejdź na stronę **[Netlify Drop](https://app.netlify.com/drop)**.
+1.  Przeciągnij folder, w którym znajduje się Twój plik `index.html`, bezpośrednio w okno przeglądarki.
+1.  **MAMY TO!** Twoja strona jest już dostępna pod publicznym linkiem.
+1.  Wyślij ten link na swój telefon i zobacz, jak profesjonalnie wygląda Twoja wizytówka w wersji mobilnej i desktopowej.
+
+---
+
+## 💡 Dlaczego to podejście wygrywa?
+
+W 2026 roku tworzenie stron to **dialog z technologią**. Dzięki temu ćwiczeniu nauczyliście się:
+
+- Jak rozmawiać z AI, używając języka designu (kolory, hierarchia wizualna, typografia).
+- Jak działają nowoczesne systemy projektowe (Design Systems).
+- Jak błyskawicznie wdrażać projekty w życie bez zbędnych barier technologicznych za pomocą promtów.
+
+**Do dzieła! Niech Wasze cyfrowe wizytówki pomogą Wam zdobyć wymarzone staże i pracę. Powodzenia! 🟢**
+
+---
+
+_Pytania? Coś nie działa? Piszcie śmiało na m@zeprzalka.com!_

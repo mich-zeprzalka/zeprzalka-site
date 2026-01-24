@@ -1,2 +1,5 @@
 / - włącza komendy w CLI np Claude
-instantdb
+/ init 
+# dodaje elementy do CLAUDE.model
+/memory
+@ umożliwa podanie ścieżki @src/.....
