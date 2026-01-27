@@ -1,0 +1,140 @@
+---
+title: "Makerkit #1 - SaaS Boilerplate Doskonały? Pierwsze Wrażenia"
+description: "Rozpoczynamy serię o budowaniu autorskich SaaS-a generujących dochód pasywny. Zobacz mój przegląd rynku boilerplate'ów, dlaczego wybrałem Makerkit (Next.js + Supabase) i jak wygląda start z architekturą Monorepo i Dockerem."
+date: "2026-01-27"
+categories: ["SaaS", "Next.js", "Web Development", "Makerkit"]
+tags:
+  [
+    "SaaS",
+    "Starter Kit",
+    "Supabase",
+    "Next.js",
+    "Boilerplate",
+    "Makerkit",
+    "Monorepo",
+    "Docker",
+  ]
+image: "/blog/markerkit.jpg"
+imageCaption: "Dashboard startowy Makerkit"
+featured: true
+author:
+  name: "zeprzalka.com"
+  title: "Digital Solutions Architect"
+  bio: "Tworzę rozwiązania łączące biznes z technologią."
+  avatar: "/avatar.png"
+---
+
+Witajcie w nowej serii na blogu! 🎉
+
+Jeśli śledzicie moje wpisy, wiecie, że lubię rozumieć technologię od podszewki. Pisaliśmy już "czysty" HTML, stylowaliśmy w CSS, a ostatnio bawiliśmy się Bootstrapem, tailwindem, czy też shadcn. Ale w świecie biznesu (i SaaS-ów) czas to pieniądz, dlatego optymalizowanie wdrożeń jest bardzo ważnym procesem.
+
+Większość programistów webowych w pewnym momencie wpada na pomysł: **"Zrobię własną aplikację SaaS!"**. I co się wtedy dzieje?
+Zamiast budować unikalną wartość dla klienta, spędzamy 3 miesiące na kodowaniu logowania, resetowania hasła, podpinaniu płatności Stripe, panelu admina i wielu innych powtarzalnych czynnościach. Jeżeli ten proces wygląda tak, jak to opisałem to mimo wszystko mamy dużo szczęścia. Zazwyczaj jest to syzyfowa praca, w szczególości w kontekście solo dev.
+Gocią nas liczne terminy, ciężko się zmobilizoać, aby każdego dnia posunąć się chociaż o krok do przodu, a większość naszych pomysłów kończy swój byt w połowie drogi do celu. Sam pewnie wiesz ile projektów odłożyłeś do szuflady, na potem, albo na wieczne zapomnienie.
+
+Często też pojawia się oszukiwanie samego siebie, bo przecież to tylko spięcie kilku prostych rzeczy pod MVP, prawda? A finał niestety jest taki, że mija pół roku, a my nadal nie mamy działającego produktu, który zarabia.
+Jako perfekcjonista (na szczęście już z tego wyrastam) sam wielokrotnie wpadałem w tę pułapkę, chcąc robić wszystko od zera i za każdym razem wymyślałem koło na nowo.
+Nawet prosta strona dla klienta stawała się czasami studnią bez dna, którą poprawiałem w nieskończoność, tworząc każdy komponent ręcznie w czystym HTML, CSS i JS. A później krok po kroku budowałem z tego tempate Wordpress.
+Nawet nie to, że korzystałem z jakiejś bazy. Zawsze od zera, bo może czegoś się jeszcze douczę, albo tym razem stworzę template doskonały, który będę mógł później sprzedawać i używać ponownie. Nic bardziej mylnego, zazwyczaj kończyło się tak samo, a zasada 20/80 Pareto, była dla mnie gadaniem nierobów sprzedających kursy online. Często tak też jest, jednakże jeżeli w ostatecznym rozrachunku, chodzi o Twój produkt, na którym chcesz zacząć zarabiać, szybkie dopłynięcie do portu, na który obrałeś azymut, powinno być nadrzędnym celem, bo ile okrętów takich jak Twój pływa bez celu po oceanach i nigdy nie uda im się dobić do upragnionej przystani?
+
+Postanowiłem to zmienić. Kupiłem "SaaS Starter Kit" (Boilerplate) i zamierzam zbudować na nim kilka poważnych projektów. Mój wybór padł na **Makerkit**.
+
+W tym wpisie opowiem Wam, dlaczego akurat on, co oferuje konkurencja i jak wyglądają pierwsze godziny konfiguracji środowiska. 🚀
+
+## 🌍 Rynek Boilerplate'ów - Co mamy do wyboru?
+
+Rynek "gotowców" do Next.js eksplodował w ostatnich latach. Zanim wydałem $299, zrobiłem solidny research. Oto główni gracze:
+
+1. **[ShipFast](https://shipfa.st/)** - Prawdopodobnie najbardziej wiralowy boilerplate.
+   - **Zalety:** Prosty, nastawiony na błyskawiczny start, genialny marketing twórcy (Marc Lou).
+   - **Wady:** Często krytykowany za jakość kodu ("spaghetti code"). Świetny na hackathon, bardziej ryzykowny dla dużego projektu, który ma być łatwy w utrzymaniu przez lata.
+
+2. **[Create T3 App](https://create.t3.gg/)** - Klasyk open-source.
+   - **Zalety:** Całkowicie darmowy, wyznacza standardy (TRPC, Prisma, Next.js).
+   - **Wady:** To "tylko" szkielet infrastruktury. Nie ma gotowych modułów biznesowych (płatności, bloga, zarządzania zespołami). Wszystko musisz dopisać sam.
+
+3. **[Achromatic](https://achromatic.dev/)** - Boilerplate dla estetów i Enterprise.
+   - **Zalety:** Niesamowicie dopracowany UI/UX i design system. Wygląda profesjonalnie "out of the box".
+   - **Wady:** Nie napotkałem się na zbyt wiele opinii negatywnych, rozwiązania takie jak tRPC wydają się dość niestandardowe.
+
+4. **[Supastarter](https://supastarter.dev/)** - Bezpośredni konkurent Makerkita.
+   - **Zalety:** Bardzo zbliżony stack (Next.js + Supabase). Posiada również wersję pod Nuxta. Bardzo aktywny twórca (Jonathan Wilke).
+   - **Wady:** W momencie mojego wyboru zdecydowałem się jednak na rozwiązanie z "Turborepo monorepo", który mniej mi odpowiadał, ale to wciąż topowa liga.
+
+5. **[Makerkit](https://makerkit.dev/)** - Mój ostateczny wybór.
+   - **Dlaczego?** O tym poniżej. 👇
+
+## 🏆 Dlaczego Wybrałem Makerkit?
+
+Decyzja nie była łatwa (to ma być przecież stack do wielu aplikacji). Szukałem narzędzia, które będzie "rosło" razem z rozwojem moich aplikacji. Nie szukałem jednorazowej zabawki, ale fundamentu pod wiele projektów.
+
+Oto co mnie przekonało:
+
+### 1. Architektura Monorepo (Turborepo) 🏗️
+
+To był dla mnie game-changer. Makerkit nie jest prostym folderem z plikami. To zorganizowany "Wielki Warsztat".
+Kod podzielony jest na:
+
+- **Apps:** Tutaj żyje Twoja aplikacja.
+- **Packages:** Tutaj są umiejscowione wspólne paczki, które możemy implementować do aplikacji (UI, Płatności, Logowanie).
+
+Dzięki temu, jeśli poprawię wygląd przycisku w paczce `ui`, zmienia się on we wszystkich moich aplikacjach naraz. To podejście Enterprise dostępne dla solopreneura.
+
+### 2. Stack Technologiczny: Next.js + Supabase ⚡
+
+Jako osoba z backgroundem PHP/WordPress (przez lata tworzyłem autorskie template od zera), **Supabase** jest dla mnie dużym krokiem naprzód. To w zasadzie "PostgreSQL z supermocami". Dostaję bazę danych, autentykację i storage plików w jednym pudełku. A w połączniue z Next.js to nowoczesny standard. Do Next.js przekonałem się już jakiś czas temu i jestem zachwycony jego możliwościami.
+
+### 3. Licencja "Unlimited Projects" ♾️
+
+W wersji Pro płacę raz i mogę tworzyć nieskończoną ilość komercyjnych projektów. To idealne dla freelancera lub seryjnego twórcy. Jest to poniekąd standard w więksości tego typu rozwiązań, ale nie we wszystkich
+
+## 🛠️ Pierwsze Wrażenia i Konfiguracja (Reality Check)
+
+Czy było łatwo? Tak, ale... trzeba zmienić myślenie.
+Jeśli przychodzisz ze świata "wrzuć pliki na FTP", Makerkit wymaga kilku, a nawet kiludziesięciu godzin nauki, do momentu pierwszego prostego deploymentu na Vercel.
+
+### Docker - Mój Nowy Przyjaciel 🐳
+
+W dokumentacji Makerkita zobaczyłem wymóg: **Docker**.
+Dla wielu (w tym kiedyś dla mnie) to słowo-straszak. Okazało się jednak, że w tym ekosystemie Docker działa jak nowoczesny **XAMPP**.
+
+Nie musiałem konfigurować kontenerów ręcznie. Wystarczyło:
+
+1. Zainstalować Docker Desktop (na Windowsie z WSL 2).
+2. Wpisać jedną komendę: `pnpm run supabase:web:start`.
+
+W tle została utworzona cała baza danych i lokalne środowisko. Co ciekawe, istnieje też **InBucket** - genialne narzędzie, które przechwytuje e-maile wysyłane z localhosta (np. linki aktywacyjne). Koniec ze spamowaniem własnej skrzynki w celu weryfikacji poprawności działania mechanizmów wysyłki w obszarze aplikacji!
+
+### Pułapki Instalacji ⚠️
+
+Dokumentacja jest świetna, ale ma swoje momenty.
+Przykład? "Step 0: Set Git Username". Instrukcja każe ustawić konfigurację wewnątrz folderu... którego jeszcze nie pobrałeś (bo to dopiero Step 1).
+**Lekcja:** Czasem trzeba zaufać intuicji programisty, a nie ślepo podążać za numerkami. Najpierw `git clone`, potem `cd`, a dopiero potem konfiguracja. Mimo genialnemu tutorialowi wprowadzającemu warto analizować niektóre zaganienia w bardziej obszerny sposób korzystając z LLMów.
+
+### Routing i Folder Structure 📂
+
+Makerkit świetnie to organizuje:
+
+- **(marketing)** - foldery w nawiasach są "niewidzialne" dla adresu URL. Tu trzymam Landing Page, Cennik i Bloga.
+- **[account]** - nawiasy kwadratowe to parametry dynamiczne. To tu dzieje się magia aplikacji SaaS (np. dashboard zespołu).
+
+Zrozumienie, że **Folder = Adres URL** daje niesamowitą kontrolę nad aplikacją. Routing w next.js jest dzięki temu intuicyjny, a w połączeniu z modułową strukturą markerkit, świetnie organizuje pracę w obszarze całej aplikacji.
+
+## 💡 Czego się nauczyłem ?
+
+1.  **Nie ucz się na zapas.** Makerkit jest dość pokaźny. Próba zrozumienia każdej linijki przed startem to błąd. Uczę się modułów (np. Płatności) dopiero wtedy, gdy ich potrzebujesz.
+2.  **Monorepo to porządek.** Oddzielenie logiki biznesowej (Apps) od narzędzi (Packages) sprawia, że kod jest czysty i reużywalny.
+3.  **Kurs > Dokumentacja.** Makerkit oferuje dedykowany kurs budowy aplikacji. Zdecydowałem się przerobić go w osobnym folderze jako "poligon doświadczalny", zanim zacznę wdrażać swój główny projekt. Po wstępnej konfiguracji, mogę przyznać, że kurs i dokumentacja są bardzo solidne, więc nie ma sensu obawiać się tym aspektem, przed zakupem markerkit.
+
+## Co Dalej?
+
+Mamy działające środowisko, bazę danych w Dockerze i pierwszą stronę powitalną na `localhost:3000`. Markerkit na start oferuje dobrze zaprojektowane komponenty wykonane z użydziem mojego ulubionego **shadcn/ui**, tworzące podstawową strukturę stron typowego SaaS-a.
+W następnym wpisie wejdziemy głębiej – spróbujemy dostosować UI pod własny brand i zrozumiemy, jak działa mechanizm autentykacji (logowanie/rejestracja).
+
+Jedną z głównych aplikacji, którą obecnie buduje przy użyciu tego stacku jest **BrandMaker**. Bądźcie czujnin to może zmienić sposób w jaki nowe firmy będą tworzyły swój biznes! 👀
+
+---
+
+**Pytania? Chcesz wiedzieć więcej?** Napisz do mnie m@zeprzalka.com
+
+Do zobaczenia w następnych wpisach! 🚀
