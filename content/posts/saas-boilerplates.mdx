@@ -28,15 +28,15 @@ Witajcie w nowej serii na blogu! 🎉
 
 Jeśli śledzicie moje wpisy, wiecie, że lubię rozumieć technologię od podszewki. Pisaliśmy już "czysty" HTML, stylowaliśmy w CSS, a ostatnio bawiliśmy się Bootstrapem, tailwindem, czy też shadcn. Ale w świecie biznesu (i SaaS-ów) czas to pieniądz, dlatego optymalizowanie wdrożeń jest bardzo ważnym procesem.
 
-Większość programistów webowych w pewnym momencie wpada na pomysł: **"Zrobię własną aplikację SaaS!"**. I co się wtedy dzieje?
-Zamiast budować unikalną wartość dla klienta, spędzamy 3 miesiące na kodowaniu logowania, resetowania hasła, podpinaniu płatności Stripe, panelu admina i wielu innych powtarzalnych czynnościach. Jeżeli ten proces wygląda tak, jak to opisałem to mimo wszystko mamy dużo szczęścia. Zazwyczaj jest to syzyfowa praca, w szczególości w kontekście solo dev.
-Gocią nas liczne terminy, ciężko się zmobilizoać, aby każdego dnia posunąć się chociaż o krok do przodu, a większość naszych pomysłów kończy swój byt w połowie drogi do celu. Sam pewnie wiesz ile projektów odłożyłeś do szuflady, na potem, albo na wieczne zapomnienie.
+Większość programistów webowych w pewnym momencie wpada na pomysł: **"Zrobię własny SaaS!"**. I co się wtedy dzieje?
+Zamiast budować unikalną wartość dla klienta, spędzamy 3 miesiące na kodowaniu logowania, resetowania hasła, podpinaniu płatności Stripe, panelu admina i wielu innych powtarzalnych czynnościach. Jeżeli ten proces wygląda tak, jak to opisałem to mimo wszystko mamy dużo szczęścia. Zazwyczaj jest to syzyfowa praca, w szczególności w kontekście solo dev.
+Gonią nas liczne terminy, ciężko się zmobilizować, aby każdego dnia posunąć się chociaż o krok do przodu, a większość naszych pomysłów kończy swój żywot w połowie drogi do celu. Sam pewnie wiesz ile projektów odłożyłeś do szuflady, na potem, albo na wieczne zapomnienie.
 
 Często też pojawia się oszukiwanie samego siebie, bo przecież to tylko spięcie kilku prostych rzeczy pod MVP, prawda? A finał niestety jest taki, że mija pół roku, a my nadal nie mamy działającego produktu, który zarabia.
 Jako perfekcjonista (na szczęście już z tego wyrastam) sam wielokrotnie wpadałem w tę pułapkę, chcąc robić wszystko od zera i za każdym razem wymyślałem koło na nowo.
 
 Nawet prosta strona dla klienta stawała się czasami studnią bez dna, którą poprawiałem w nieskończoność, tworząc każdy komponent ręcznie w czystym HTML, CSS i JS. A później krok po kroku budowałem z tego tempate Wordpress.
-Nawet nie to, że korzystałem z jakiejś bazy. Zawsze od zera, bo może czegoś się jeszcze douczę, albo tym razem stworzę template doskonały, który będę mógł później sprzedawać i używać ponownie. Nic bardziej mylnego, zazwyczaj kończyło się tak samo, a zasada 20/80 Pareto, była dla mnie gadaniem nierobów sprzedających kursy online. Często tak też jest, jednakże jeżeli w ostatecznym rozrachunku, chodzi o Twój produkt, na którym chcesz zacząć zarabiać, szybkie dopłynięcie do portu, na który obrałeś azymut, powinno być nadrzędnym celem, bo ile okrętów takich jak Twój pływa bez celu po oceanach i nigdy nie uda im się dobić do upragnionej przystani?
+Nawet nie to, że korzystałem z jakiejś bazy. Zawsze od zera, bo może czegoś się jeszcze douczę, albo tym razem stworzę template doskonały, który będę mógł później sprzedawać i używać ponownie. Nic bardziej mylnego, zazwyczaj kończyło się tak samo, a zasada 20/80 Pareto, była dla mnie gadaniem nierobów sprzedających kursy online. Często tak też jest, jednakże jeżeli w ostatecznym rozrachunku, chodzi o Twój produkt, na którym chcesz zacząć zarabiać, szybkie dopłynięcie do portu, na który obrałeś azymut, powinno być nadrzędnym celem, bo ile okrętów takich jak Twój pływa bez celu po oceanach i nigdy nie uda im się dobić do upragnionego portu?
 
 Postanowiłem to zmienić. Kupiłem "SaaS Starter Kit" (Boilerplate) i zamierzam zbudować na nim kilka poważnych projektów. Mój wybór padł na **Makerkit**.
 
@@ -83,16 +83,16 @@ Dzięki temu, jeśli poprawię wygląd przycisku w paczce `ui`, zmienia się on 
 
 ### 2. Stack Technologiczny: Next.js + Supabase ⚡
 
-Jako osoba z backgroundem PHP/WordPress (przez lata tworzyłem autorskie template od zera), **Supabase** jest dla mnie dużym krokiem naprzód. To w zasadzie "PostgreSQL z supermocami". Dostaję bazę danych, autentykację i storage plików w jednym pudełku. A w połączniue z Next.js to nowoczesny standard. Do Next.js przekonałem się już jakiś czas temu i jestem zachwycony jego możliwościami.
+Jako osoba z backgroundem PHP/WordPress (przez lata tworzyłem autorskie template od zera), **Supabase** jest dla mnie dużym krokiem naprzód. To w zasadzie "PostgreSQL z supermocami". Dostaję bazę danych, autentykację i storage plików w jednym pudełku. A w połączeniu z Next.js to nowoczesny standard. Do Next.js przekonałem się już jakiś czas temu i jestem zachwycony jego możliwościami.
 
 ### 3. Licencja "Unlimited Projects" ♾️
 
-W wersji Pro płacę raz i mogę tworzyć nieskończoną ilość komercyjnych projektów. To idealne dla freelancera lub seryjnego twórcy. Jest to poniekąd standard w więksości tego typu rozwiązań, ale nie we wszystkich
+W wersji Pro płacę raz i mogę tworzyć nieskończoną ilość komercyjnych projektów. To idealne dla freelancera lub seryjnego twórcy. Jest to poniekąd standard w większości tego typu rozwiązań, ale nie we wszystkich
 
 ## 🛠️ Pierwsze Wrażenia i Konfiguracja (Reality Check)
 
 Czy było łatwo? Tak, ale... trzeba zmienić myślenie.
-Jeśli przychodzisz ze świata "wrzuć pliki na FTP", Makerkit wymaga kilku, a nawet kiludziesięciu godzin nauki, do momentu pierwszego prostego deploymentu na Vercel.
+Jeśli przychodzisz ze świata "wrzuć pliki na FTP", Makerkit wymaga kilku, a nawet kilkudziesięciu godzin nauki, do momentu pierwszego prostego deploymentu na Vercel.
 
 ### Docker - Mój Nowy Przyjaciel 🐳
 
@@ -129,7 +129,7 @@ Zrozumienie, że **Folder = Adres URL** daje niesamowitą kontrolę nad aplikacj
 
 ## Co Dalej?
 
-Mamy działające środowisko, bazę danych w Dockerze i pierwszą stronę powitalną na `localhost:3000`. Markerkit na start oferuje dobrze zaprojektowane komponenty wykonane z użydziem mojego ulubionego **shadcn/ui**, tworzące podstawową strukturę stron typowego SaaS-a.
+Mamy działające środowisko, bazę danych w Dockerze i pierwszą stronę powitalną na `localhost:3000`. Markerkit na start oferuje dobrze zaprojektowane komponenty wykonane z użyciem mojego ulubionego **shadcn/ui**, tworzące podstawową strukturę stron typowego SaaS-a.
 W następnym wpisie wejdziemy głębiej – spróbujemy dostosować UI pod własny brand i zrozumiemy, jak działa mechanizm autentykacji (logowanie/rejestracja).
 
 Jedną z głównych aplikacji, którą obecnie buduje przy użyciu tego stacku jest **BrandMaker**. Bądźcie czujnin to może zmienić sposób w jaki nowe firmy będą tworzyły swój biznes! 👀
