@@ -1,0 +1,194 @@
+---
+title: 'Makerkit #3 - Jak Zmienić "Gotowca" we Własny Produkt?'
+description: "Masz już działające środowisko, ale Twoja aplikacja wygląda jak szablon? Czas to zmienić. Poznaj architekturę konfiguracji Makerkit, walidację Zod, system Feature Flags i zobacz, jak dostosować branding i treści pod własne potrzeby."
+date: "2026-02-10"
+categories: ["SaaS", "Next.js", "Makerkit", "Configuration", "UI/UX"]
+tags:
+  [
+    "Makerkit",
+    "Shadcn UI",
+    "Zod",
+    "Configuration",
+    "Branding",
+    "Next.js",
+    "Feature Flags",
+    "BrandMaker",
+  ]
+image: "/blog/makerkit.jpg"
+imageCaption: "Od generycznego szablonu do unikalnego brandingu - proces customizacji."
+featured: false
+author:
+  name: "zeprzalka.com"
+  title: "Digital Solutions Architect"
+  bio: "Tworzę rozwiązania łączące biznes z technologią."
+  avatar: "/avatar.png"
+---
+
+Witajcie w trzeciej części naszej sagi o budowaniu SaaS-a! 👋
+
+W [poprzednim wpisie](/blog/markerkit-wprowadzenie) udało nam się uruchomić nasz boilerplate. Mamy działającego Next.js, bazę Supabase w Dockerze i wszystko działa na localhost.
+Jest jednak jeden problem: **Twoja aplikacja wygląda dokładnie tak samo, jak tysiące innych aplikacji zbudowanych na Makerkit.**
+
+Dziś to zmienimy. Przejdziemy przez proces **Customizacji**.
+Ale uwaga – w Makerkit nie chodzi tylko o zmianę kolorów w CSS. To zaawansowany system, który używa zmiennych środowiskowych, walidacji typów i flag funkcjonalnych.
+
+Zrozumienie tego etapu jest kluczowe, abyś nie zablokował sobie możliwości łatwych aktualizacji w przyszłości. Jesteś gotowy - zaczynajmy? 🎨
+
+## 🧠 Mózg Operacji: Architektura Konfiguracji
+
+Makerkit podchodzi do konfiguracji w sposób bardzo "Enterprise". Nie wpisujemy tu niczego "na sztywno" w kodzie (hardcoding).
+Zamiast tego, przepływ informacji wygląda tak:
+
+1.  **Environment Variables (`.env`)** – Tu definiujesz wartości.
+2.  **Zod Validation (`config/*`)** – Tu sprawdzamy, czy wartości są poprawne.
+3.  **Application Layer** – Aplikacja używa tylko zweryfikowanych danych.
+
+### Dlaczego Zod? (Nasz Strażnik)
+
+Makerkit używa biblioteki **Zod** do walidacji pliku konfiguracyjnego.
+Jeśli w pliku `.env` wpiszesz zły URL albo zapomnisz klucza API, aplikacja **się nie włączy**.
+
+Może Cię to irytować, gdy zobaczysz błędy w terminalu, ale uwierz mi – to dla Twojego dobra. Lepiej, żeby aplikacja "wywaliła się" Tobie lokalnie, niż użytkownikowi na produkcji, bo zapomniałeś jednej zmiennej, lub ma ona niewłaściwy typ.
+
+Przykład pliku `apps/web/config/app.config.ts`:
+
+```typescript
+const AppConfigSchema = z.object({
+  name: z.string().min(1),
+  url: z.string().url(),
+  // ...reszta konfiguracji
+})
+```
+
+### Gdzie co wpisać? (`.env`)
+
+W folderze `apps/web/` znajdziesz plik `.env`. To tutaj definiujesz tożsamość swojego SaaS-a:
+
+```bash
+NEXT_PUBLIC_PRODUCT_NAME="BrandMaker"
+NEXT_PUBLIC_SITE_TITLE="BrandMaker - Automatyzacja Brandingu dla Firm"
+NEXT_PUBLIC_SITE_DESCRIPTION="Platforma dla twórców..."
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_DEFAULT_LOCALE=pl
+```
+
+> **Pro-Tip:** Pamiętaj o różnicy między zmiennymi publicznymi a prywatnymi.
+>
+> - `NEXT_PUBLIC_...` – widoczne dla przeglądarki (np. nazwa strony).
+> - Bez prefixu – widoczne tylko na serwerze (np. `STRIPE_SECRET_KEY`). Nigdy nie wrzucaj sekretów do zmiennych publicznych!
+
+## 🎨 Branding: Kolory i Shadcn UI
+
+Makerkit używa **Shadcn UI** – obecnie najpopularniejszego standardu w świecie Reacta / Next.
+To oznacza, że nie masz jednego wielkiego pliku `theme.js`, ale operujesz na **zmiennych CSS**.
+
+Chcesz zmienić kolor wiodący (Primary) swojej aplikacji?
+Nie szukaj w komponentach Reacta. Wejdź do:
+📂 **`apps/web/styles/shadcn-ui.css`**
+
+Znajdziesz tam definicje kolorów w formacie HSL:
+
+```css
+:root {
+  /* To jest domyślny fiolet Makerkita */
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 210 20% 98%;
+  /* ... */
+}
+```
+
+Aby dostosować to do swojego brandu, po prostu podmieniasz identyfikator koloru.
+Możesz użyć gotowych tematów ze strony [Shadcn UI Themes](https://ui.shadcn.com/create) i po prostu skopiować je do tego pliku.
+
+## 🖼️ Logo, Favicony i Fonty
+
+To detale, które budują zaufanie i ostateczny wygląd Twojej aplikacji.
+
+### 1. Logo
+
+Logo nie jest plikiem obrazkowym wrzuconym oddzielnie w każde miejsce. To komponent Reacta.
+Znajdziesz go w: 📂 **`apps/web/components/app-logo.tsx`**.
+
+Możesz tam:
+
+- Wkleić swój kod SVG (najlepsza opcja dla wydajności).
+- Użyć tagu `<Image />` z Next.js.
+- Zwrócić po prostu tekst, jeśli jesteś na etapie MVP.
+
+### 2. Favicony
+
+Nic tak nie zdradza "gotowca" jak logo Makerkita lub Next.js w karcie przeglądarki (sam często zostawiam je po skończeniu aplikacji 🤦).
+Podmień pliki w folderze:
+📂 **`apps/web/public/images/favicon`**.
+Wystarczy, że nadpiszesz istniejące pliki swoimi (użyj np. [Favicon Generator](https://favicon.io/)).
+
+### 3. Fonty
+
+Makerkit korzysta z `next/font` – to game changer pod względem wydajności (zero layout shift!).
+Domyślnie jest to `Inter` (tekst) i `Urbanist` (nagłówki).
+
+Chcesz to zmienić? Edytuj plik:
+📂 **`apps/web/lib/fonts.ts`**
+
+```typescript
+import { Quicksand as HeadingFont, Inter as SansFont } from "next/font/google"
+// Podmieniasz import i konfigurację, a reszta dzieje się sama!
+```
+
+## 📝 Edycja Strony Głównej (Landing Page)
+
+Masz już swoje kolory i logo, ale strona główna nadal wita tekstami o "SaaS Starter Kit". Zmieńmy to na ofertę **BrandMaker**.
+
+Strony marketingowe (dostępne bez logowania) znajdują się w folderze `(marketing)`.
+Edytuj plik: 📂 **`apps/web/app/(marketing)/page.tsx`**.
+
+Znajdziesz tam komponenty takie jak `<HeroTitle>` czy `<Heading>`. Wygląd kodu może znacząco odbiegać od przykładu (zmiany w Markerkit, jednak koncepcje są podobne). To tutaj wpisujesz swoje copy:
+
+```tsx
+<HeroTitle>
+  <span className={"text-primary"}>BrandMaker</span>
+  <span>
+    <span>Automatyzacja Twojego Brandingu</span>
+  </span>
+</HeroTitle>
+```
+
+Dzięki temu, że korzystasz z gotowych komponentów, nie musisz martwić się o responsywność czy wielkość czcionek – wszystko "samo" wygląda dobrze. Warto w późniejszych etapach rozwoju aplikacji przygotować swoje komponenty, ale pamiętaj, że lepiej mieć wdrożoną aplikację na szablonie, niż nie mieć jej wcale.
+
+## 🎛️ Feature Flags: Zarządzanie Funkcjami
+
+To jedna z moich ulubionych rzeczy w tym boilerplacie.
+Zamiast usuwać kod, którego nie potrzebujesz (np. "nie chcę kont zespołowych, tylko indywidualne"), możesz je po prostu **wyłączyć** w konfiguracji.
+
+Plik: 📂 **`apps/web/config/feature-flags.config.ts`**
+
+Chcesz zrobić SaaS tylko B2B?
+
+```bash
+# W pliku .env
+NEXT_PUBLIC_ENABLE_PERSONAL_ACCOUNT_BILLING="false"
+NEXT_PUBLIC_ENABLE_TEAM_ACCOUNTS="true"
+```
+
+Dzięki temu kod pozostaje w aplikacji (gdybyś zmienił zdanie za pół roku), ale użytkownicy go nie widzą. Czysto i bezpiecznie.
+
+## 💡 Podsumowanie
+
+Po przejściu tego etapu Twój projekt przestaje być "szablonem". Ma Twoją nazwę, kolory, logo i włączone tylko te funkcje, których potrzebujesz.
+
+**Co zrobiliśmy?**
+
+1.  ✅ Skonfigurowaliśmy metadane projektu przez `.env`.
+2.  ✅ Dostosowaliśmy design system (Shadcn UI) w pliku CSS.
+3.  ✅ Podmieniliśmy Logo, Favicony i Fonty.
+4.  ✅ Zmieniliśmy treści na stronie głównej (Landing Page).
+5.  ✅ Skonfigurowaliśmy Feature Flags pod nasz model biznesowy.
+
+W następnym wpisie zejdziemy do zaplecza... czyli do **Bazy Danych**. 🗄️
+Nauczymy się, jak modyfikować schemat Supabase, dodawać własne tabele i zarządzać migracjami. To tam zacznie się prawdziwa logika Twojego SaaS-a.
+
+Do zobaczenia! 🚀
+
+---
+
+**Źródło:** [Makerkit Course - Customization](https://makerkit.dev/courses/nextjs-turbo/customization)

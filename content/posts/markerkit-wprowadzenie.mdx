@@ -1,6 +1,6 @@
 ---
 title: "Makerkit #2 - Instalacja, Architektura Monorepo i Pierwsze Kroki z Dockerem"
-description: "Kupiłeś boilerplate i co dalej? Przechodzimy przez instalację Makerkit (Next.js + Supabase). Analizujemy architekturę Turborepo, rolę paczek (packages) oraz strukturę routingu w Next.js App Router, która napędza BrandMaker."
+description: "Kupiłeś boilerplate i co dalej? Dokumentacja Markerkit jest bardzo dobra, a niniejszy artykuł stanowi podsumowania najważniejszych rzeczy. Przechodzimy przez instalację Makerkit (Next.js + Supabase). Analizujemy architekturę Turborepo, rolę paczek (packages) oraz strukturę routingu w Next.js App Router."
 date: "2026-02-03"
 categories: ["SaaS", "Next.js", "Makerkit", "Supabase", "Architecture"]
 tags:
@@ -27,10 +27,10 @@ author:
 Witajcie w drugiej części naszej serii o budowaniu SaaS-a! 👋
 
 W [poprzednim wpisie](/blog/saas-boilerplates) podjęliśmy strategiczną decyzję o zakupie **Makerkit** – zaawansowanego boilerplate'u opartego na Next.js i Supabase.
-Dlaczego? Aby nie wymyślać koła na nowo i skupić się na unikalnej wartości biznesowej projektu **BrandMaker**, zamiast tracić miesiące na konfigurację logowania, płatności czy emaili transakcyjnych.
+Dlaczego? Aby nie wymyślać koła na nowo i skupić się na unikalnej wartości biznesowej projektu, zamiast tracić miesiące na konfigurację logowania, płatności czy emaili transakcyjnych.
 
 Dziś przechodzimy od teorii do "mięsa".
-Uruchomimy ten statek kosmiczny na Twoim komputerze lokalnym i zajrzymy pod maskę. Ostrzegam: dla osób przyzwyczajonych do prostych, monolitycznych projektów, pierwsze zderzenie z architekturą **Monorepo (Turborepo)** i konteneryzacją **Docker** może być wyzwaniem.
+Uruchomimy ten stack na Twoim komputerze lokalnie i zajrzymy pod maskę. Ostrzegam: dla osób przyzwyczajonych do prostych, monolitycznych projektów, pierwsze zderzenie z architekturą **Monorepo (Turborepo)** i konteneryzacją **Docker** może być wyzwaniem.
 
 Ale spokojnie – przejdziemy przez to krok po kroku, wyjaśniając nie tylko _jak_, ale przede wszystkim _dlaczego_ tak to zostało zaprojektowane. 🚀
 
@@ -42,16 +42,16 @@ Zanim wpiszesz pierwszą komendę, musisz wyposażyć swój warsztat. Makerkit w
     Makerkit używa `pnpm` zamiast klasycznego `npm`. Dlaczego?
     W architekturze monorepo (gdzie mamy wiele aplikacji i paczek) `pnpm` jest znacznie szybszy i oszczędza gigabajty miejsca na dysku, dzięki sprytnemu zarządzaniu zależnościami.
 2.  **Git:** Podstawa pracy każdego developera.
-3.  **Docker:** Kluczowy element układanki.
+3.  **Docker:** jeden z kluczowych elementów układanki.
 
 ### Dlaczego Docker jest konieczny?
 
 Wielu początkujących programistów boi się Dockera. W Makerkit nie służy on do komplikowania życia, ale do **lokalnego odwzorowania środowiska produkcyjnego**.
 
-Zamiast łączyć się z chmurą Supabase podczas developmentu (co byłoby wolne i ryzykowne), Docker pozwala uruchomić **całą instancję Supabase** na Twoim laptopie. Masz lokalnie:
+Zamiast łączyć się z chmurą Supabase podczas developmentu (co byłoby wolne, ryzykowne i na pewnym etapie płatne), Docker pozwala uruchomić **całą instancję Supabase** w Twoim środowisku lokalnym. Masz lokalnie:
 
 - Bazę danych Postgres
-- System autentykacji (GoTrue)
+- System autentykacji
 - Storage plików
 - Edge Functions
 - Studio (dashboard do zarządzania bazą)
@@ -70,11 +70,11 @@ cd next-supabase-saas-kit-turbo
 pnpm install
 ```
 
-Komenda `pnpm install` pobierze zależności dla wszystkich aplikacji i paczek wewnątrz repozytorium.
+Komenda `pnpm install` pobierze zależności dla wszystkich plików i paczek wewnątrz repozytorium. Oczywiście wymagany jest dostęp do płatnę wersji. Istnieje również darmowa wersja demo, jednak płynne przejście między demem a pełną wersją jest ciężkie, ze względu na inną strukturę plików.
 
 ### 2. Start Lokalnego Supabase
 
-To moment, w którym dzieje się magia. Wpisz w terminalu:
+To moment, w którym pierwszy raz włączamy całość backendu. Wpisz w terminalu:
 
 ```bash
 pnpm run supabase:web:start
@@ -94,7 +94,7 @@ pnpm run dev
 
 Teraz możesz wejść na `http://localhost:3000`. Powinieneś zobaczyć działający landing page.
 
-> **Ciekawostka - InBucket:** Jak testować resetowanie hasła lokalnie? Makerkit uruchamia narzędzie **InBucket** (zazwyczaj pod adresem `http://localhost:54324`). To "fałszywa" skrzynka pocztowa, która przechwytuje wszystkie e-maile wysyłane przez Twoją aplikację lokalnie. Koniec ze spamowaniem własnego Gmaila podczas testów!
+> **Ciekawostka - InBucket:** Jak testować resetowanie hasła lokalnie? Makerkit uruchamia narzędzie **InBucket** (zazwyczaj pod adresem `http://localhost:54324`). To lokalna skrzynka pocztowa, która przechwytuje wszystkie e-maile wysyłane przez Twoją aplikację. Koniec ze spamowaniem własnego Gmaila podczas testów!
 
 ## 🏗️ Architektura: Potęga Turborepo i Monorepo
 
@@ -106,12 +106,12 @@ Cały kod podzielony jest na dwa główne katalogi: `apps` oraz `packages`.
 
 Tutaj znajdują się punkty wejściowe Twojego systemu.
 
-- **`web`**: Główna aplikacja Next.js (Twój SaaS). To tutaj spędzisz 90% czasu, definiując widoki i logikę biznesową BrandMakera.
+- **`web`**: Główna aplikacja Next.js (Twój SaaS). To tutaj spędzisz większość czasu, definiując widoki i logikę biznesową aplikacji.
 - **`e2e`**: Testy end-to-end (Playwright), które pilnują, czy Twoja aplikacja działa poprawnie.
 
-### 2. `packages/` (Współdzielone Klocki LEGO)
+### 2. `packages/` (Współdzielone "Klocki")
 
-To tutaj leży siła skalowalności Makerkita. Zamiast pisać kod "na sztywno" w aplikacji, funkcjonalności są wydzielone do małych, reużywalnych paczek.
+To tutaj leży siła skalowalności aplikacji. Zamiast pisać kod "na sztywno", funkcjonalności są wydzielone do małych, reużywalnych paczek.
 
 Oto najważniejsze z nich, które znajdziesz w folderze `packages`:
 
@@ -120,7 +120,7 @@ Oto najważniejsze z nich, które znajdziesz w folderze `packages`:
 - **`@kit/billing`**: Abstrakcja płatności. Obsługuje Stripe i Lemon Squeezy, pozwalając łatwo przełączać się między dostawcami.
 
 **Dlaczego to jest genialne?**
-Jeśli za rok zdecyduję się stworzyć oddzielną aplikację np. `apps/admin-panel` dla pracowników BrandMaker, po prostu zaimportuję te gotowe paczki. Nie będę musiał kopiować kodu ani pisać go od nowa. To podejście Enterprise dostępne dla solopreneura.
+Jeśli za rok zdecyduję się stworzyć oddzielną aplikację np. `apps/admin-panel` np. dla nowo zatrudnionych pracowników, obsługujących Twój SaaS, po prostu zaimportuję te gotowe paczki. Nie będę musiał kopiować kodu ani pisać go od nowa. To podejście Enterprise dostępne dla solopreneura.
 
 ## 🗺️ Routing: Mapa Twojego SaaS-a
 
@@ -140,7 +140,7 @@ Makerkit wyraźnie oddziela stronę wizytówkową od aplikacji właściwej.
 
 ### Klucz do B2B: `(user)` vs `[account]`
 
-Tutaj Makerkit pokazuje swoją siłę w kontekście aplikacji B2B (takich jak BrandMaker, gdzie użytkownicy pracują w zespołach). Wewnątrz folderu `home` mamy podział:
+Tutaj Makerkit pokazuje swoją siłę w kontekście aplikacji B2B. Wewnątrz folderu `home` mamy podział:
 
 1.  **`(user)`** – **Kontekst Osobisty**
     - Adresy typu: `/home/settings`, `/home/profile`.
@@ -151,14 +151,14 @@ Tutaj Makerkit pokazuje swoją siłę w kontekście aplikacji B2B (takich jak Br
     - Adresy typu: `/home/brandmaker-team/dashboard`.
     - Wszystko, co tu stworzymy, będzie dotyczyło wybranej organizacji.
 
-> **Uwaga:** Jeśli tworzysz aplikację typowo B2C, możesz zignorować folder `[account]` i pracować głównie w `(user)`. Jednak dla BrandMakera, struktura zespołowa jest kluczowa.
+> **Uwaga:** Jeśli tworzysz aplikację typowo B2C, możesz zignorować folder `[account]` i pracować głównie w `(user)`. Jednak w przypadku Twojego biznesu, struktura zespołowa może okazać się kluczowa.
 
 ## 💡 Co dalej?
 
-Mamy działające środowisko lokalne z bazą danych w Dockerze. Rozumiemy strukturę Monorepo i wiemy, gdzie szukać plików. Właśnie zaoszczędziliśmy tygodnie pracy, które normalnie poświęcilibyśmy na konfigurację architektury.
+Mamy działające środowisko lokalne z bazą danych w Dockerze. Rozumiemy strukturę Monorepo i wiemy, gdzie szukać plików. Właśnie zaoszczędziliśmy wiele godzin pracy, które normalnie poświęcilibyśmy na konfigurację architektury.
 
 W następnym wpisie przejdziemy do konkretów – **Customizacji**. 🎨
-Weźmiemy ten surowy szablon i zaczniemy go zmieniać w **BrandMaker**. Zobaczycie, jak dodawać nowe funkcje (Features) wykorzystując architekturę Makerkita.
+Weźmiemy ten surowy szablon i zaczniemy go zmieniać. Zobaczycie, jak dodawać nowe funkcje (Features) wykorzystując architekturę Makerkita.
 
 Do zobaczenia w kodzie! 👨‍💻
 
