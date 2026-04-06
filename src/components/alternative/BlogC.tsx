@@ -27,7 +27,7 @@ export function BlogC() {
         </aside>
 
         <div className="lg:col-span-9">
-          <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2">
             {posts.map((post) => (
               <article key={post.slug} className="group relative">
                 <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-4">

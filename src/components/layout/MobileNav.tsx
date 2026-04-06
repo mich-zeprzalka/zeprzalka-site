@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet"
 import { ModeToggle } from "@/components/Toggle"
+import { Logo } from "@/components/layout/Logo"
 import { cn } from "@/lib/utils"
 
 const navLinks = [
@@ -41,29 +42,25 @@ export function MobileNav() {
       */}
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent
-          side="right"
+          side="top"
           showCloseButton={false}
-          className="flex flex-col p-0 gap-0 w-72 sm:w-72 sm:max-w-72"
+          className="flex flex-col p-0 gap-0 w-full h-screen bg-background"
         >
           {/* Wymagany przez Radix dla screen readerów */}
           <SheetTitle className="sr-only">Menu nawigacyjne</SheetTitle>
 
-          {/*
-            Nagłówek panelu jest strukturalną kopią prawej strony głównego headera:
-              Header:       px-4 … [ModeToggle w-9][gap-2][hamburger w-9]
-              Panel header: px-4 [ModeToggle w-9][gap-2][X w-9]
-            Panel ma right-0 → prawa krawędź = prawa krawędź viewportu.
-            X jest dokładnie w tym samym miejscu co hamburger.
-          */}
-          <div className="flex items-center justify-end gap-2 h-16 px-4 border-b shrink-0">
-            <ModeToggle />
-            <button
-              onClick={() => setOpen(false)}
-              aria-label="Zamknij menu"
-              className="flex items-center justify-center w-9 h-9 rounded-md hover:bg-muted transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
+          <div className="flex items-center justify-between h-16 px-4 border-b shrink-0 container mx-auto">
+            <Logo />
+            <div className="flex items-center justify-end gap-2">
+              <ModeToggle />
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Zamknij menu"
+                className="flex items-center justify-center w-9 h-9 rounded-md hover:bg-muted transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* Linki */}

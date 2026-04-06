@@ -37,17 +37,15 @@ export default async function BlogPage({ searchParams }: PageProps) {
   const currentPage = Math.max(1, parseInt(page || "1", 10))
 
   const allPosts = getAllPosts()
-  const featuredPosts = getFeaturedPosts()
+  const featuredPosts = getFeaturedPosts().slice(0, 2)
+  const featuredSlugs = new Set(featuredPosts.map((p) => p.slug))
 
-  const featuredSlugs = new Set(featuredPosts.slice(0, 2).map((p) => p.slug))
+  // Wykluczamy wyróżnione artykuły ze wszystkich, aby nie wpływały na paginację
+  const nonFeaturedPosts = allPosts.filter((p) => !featuredSlugs.has(p.slug))
 
-  const totalPages = Math.ceil(allPosts.length / PAGE_SIZE)
+  const totalPages = Math.ceil(nonFeaturedPosts.length / PAGE_SIZE)
   const offset = (currentPage - 1) * PAGE_SIZE
-  const paginatedPosts = allPosts.slice(offset, offset + PAGE_SIZE)
-  const displayedPosts =
-    currentPage === 1
-      ? paginatedPosts.filter((p) => !featuredSlugs.has(p.slug))
-      : paginatedPosts
+  const displayedPosts = nonFeaturedPosts.slice(offset, offset + PAGE_SIZE)
 
   return (
     <div className="container mx-auto px-4 py-12 md:py-16 lg:py-20">

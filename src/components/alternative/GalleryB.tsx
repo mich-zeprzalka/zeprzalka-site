@@ -3,6 +3,8 @@
 import { useInView } from "react-intersection-observer"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { useState, useEffect, useRef } from "react"
+import { cn } from "@/lib/utils"
 
 const galleryItems = [
   {
@@ -65,13 +67,25 @@ const galleryItems = [
 
 function LazyVideo({ src, title, category }: { src: string; title: string; category: string }) {
   const { ref, inView } = useInView({ triggerOnce: true, rootMargin: "600px" })
+  const [isLoaded, setIsLoaded] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current && videoRef.current.readyState >= 3) {
+      setIsLoaded(true)
+    }
+  }, [])
 
   return (
-    <div ref={ref} className="relative -my-6">
-      {!inView && <div className="aspect-video w-full bg-muted/30" />}
+    <div ref={ref} className="relative aspect-video w-full bg-muted/30 -my-6">
       {inView && (
         <video
-          className="w-full h-auto block animate-in fade-in duration-700"
+          ref={videoRef}
+          onLoadedData={() => setIsLoaded(true)}
+          className={cn(
+            "w-full h-full object-cover block transition-opacity duration-1000",
+            isLoaded ? "opacity-100" : "opacity-0"
+          )}
           autoPlay loop muted playsInline
         >
           <source src={src} type="video/mp4" />
