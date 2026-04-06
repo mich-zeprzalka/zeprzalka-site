@@ -27,7 +27,7 @@ export async function sendContactEmail(
   })
 
   if (!result.success) {
-    return { success: false, message: result.error.errors[0].message }
+    return { success: false, message: result.error.issues[0].message }
   }
 
   const { name, email, projectType, message } = result.data
