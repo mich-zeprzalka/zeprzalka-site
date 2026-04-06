@@ -36,7 +36,7 @@ export function HeroB() {
         multimedialnych
       </p>
       <Button asChild size="lg" className="p-6 w-fit">
-        <Link href="#contact">
+        <Link href="/kontakt">
           <MousePointerClick />
           Zarezerwuj Bezpłatną Konsultację
         </Link>
