@@ -21,7 +21,7 @@ export function Footer() {
             <h3 className="font-semibold">Nawigacja</h3>
             <nav className="flex flex-col space-y-2">
               <Link
-                href="#contact"
+                href="/kontakt"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Kontakt

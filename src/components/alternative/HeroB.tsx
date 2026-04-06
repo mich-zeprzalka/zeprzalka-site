@@ -45,6 +45,7 @@ export function HeroB() {
         <video 
           ref={videoRef}
           autoPlay muted loop playsInline 
+          poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
           onLoadedData={() => setIsLoaded(true)}
           className={cn("absolute inset-0 w-full h-full object-cover transition-opacity duration-1000", isLoaded ? "opacity-100" : "opacity-0")}
         >

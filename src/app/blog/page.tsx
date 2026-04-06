@@ -68,6 +68,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                       src={post.frontmatter.image}
                       alt={post.frontmatter.title}
                       fill
+                      priority
                       className="object-cover transition-transform group-hover:scale-105"
                     />
                   </div>
@@ -126,7 +127,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
           )}
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayedPosts.map((post: Post) => (
+          {displayedPosts.map((post: Post, index) => (
             <article key={post.slug} className="group relative">
               <div>
                 <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-4">
@@ -134,6 +135,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
                     src={post.frontmatter.image}
                     alt={post.frontmatter.title}
                     fill
+                    priority={currentPage === 1 && index < 3}
                     className="object-cover transition-transform group-hover:scale-105"
                   />
                 </div>

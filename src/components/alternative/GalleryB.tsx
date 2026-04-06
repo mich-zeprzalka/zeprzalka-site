@@ -82,6 +82,7 @@ function LazyVideo({ src, title, category }: { src: string; title: string; categ
         <video
           ref={videoRef}
           onLoadedData={() => setIsLoaded(true)}
+          poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
           className={cn(
             "w-full h-full object-cover block transition-opacity duration-1000",
             isLoaded ? "opacity-100" : "opacity-0"

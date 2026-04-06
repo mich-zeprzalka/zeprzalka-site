@@ -1,29 +1,36 @@
 "use server"
 
 import nodemailer from "nodemailer"
+import { z } from "zod"
 
 export interface ContactFormState {
   success: boolean
   message: string
 }
 
+const contactSchema = z.object({
+  name: z.string().trim().min(2, "Imię musi mieć minimum 2 znaki."),
+  email: z.string().trim().email("Podaj poprawny adres e-mail."),
+  projectType: z.string().trim().optional(),
+  message: z.string().trim().min(5, "Wiadomość musi mieć minimum 5 znaków.")
+})
+
 export async function sendContactEmail(
   _prevState: ContactFormState,
   formData: FormData
 ): Promise<ContactFormState> {
-  const name = formData.get("name")?.toString().trim()
-  const email = formData.get("email")?.toString().trim()
-  const projectType = formData.get("project-type")?.toString().trim()
-  const message = formData.get("message")?.toString().trim()
+  const result = contactSchema.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    projectType: formData.get("project-type"),
+    message: formData.get("message")
+  })
 
-  if (!name || !email || !message) {
-    return { success: false, message: "Wypełnij wymagane pola." }
+  if (!result.success) {
+    return { success: false, message: result.error.errors[0].message }
   }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  if (!emailRegex.test(email)) {
-    return { success: false, message: "Podaj poprawny adres e-mail." }
-  }
+  const { name, email, projectType, message } = result.data
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp-sh188996.super-host.pl",
