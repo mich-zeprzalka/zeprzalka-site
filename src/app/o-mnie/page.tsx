@@ -13,47 +13,62 @@ export const metadata: Metadata = {
 
 const experience = [
   {
-    role: "Digital Solutions Architect",
-    company: "Własna działalność",
-    period: "2018 — obecnie",
+    role: "Digital Solutions Architect & Graphic Designer",
+    company: "Freelance",
+    period: "2011 - obecnie",
     description:
-      "Projektowanie i wdrażanie kompleksowych rozwiązań cyfrowych dla klientów z branży e-commerce, mediów i finansów. Tworzenie design systemów, aplikacji webowych oraz strategii transformacji cyfrowej.",
-    tags: ["Next.js", "React", "TypeScript", "Design Systems", "AI Integration"],
+      "Ponad 30+ klientów. Głównie tworzenie stron internetowych, aplikacji, materiałów graficznych, animacji i materiałów wideo. Prowadzenie i zarządzanie Social Media, przygotwywanie kampanii reklamowych oraz doradztwo w zakresie transformacji cyfrowej.",
+    tags: ["Social Media", "Marketing", "Branding", "Projektowanie UX/UI", "Tworzenie stron i aplikacji", "Grafika", "Montaż Wideo", "Animacja", "Integracje AI"],
   },
   {
-    role: "Lead Frontend Developer",
-    company: "Agencja Interaktywna",
-    period: "2014 — 2018",
+    role: "Wykładowca akademicki",
+    company: "Uczelnie wyższe",
+    period: "2016 — 2026",
     description:
-      "Kierowanie zespołem frontendowym i budowa złożonych interfejsów użytkownika. Wdrożenie procesów design-to-code oraz standardów dostępności WCAG 2.1.",
-    tags: ["React", "Webpack", "SASS", "Figma", "Scrum"],
+      "Prowadzenie zajęć z zakresu projektowania graficznego, tworzenia stron internetowych oraz nowoczesnych technologii. Kierownik specjalizacji Multimedia w Warszawskiej Szkole Reklamy. Wykładowca Uniwersytetu Civitas wyróżniony Nagrodą Rektora.",
+    tags: ["Tworzenie stron WWW", "Projektowanie graficzne", "Figma", "Photoshop", "After Effects", "Social Media Marketing"],
   },
-  {
-    role: "Web Developer & Graphic Designer",
-    company: "Studio Kreatywne",
-    period: "2012 — 2014",
-    description:
-      "Tworzenie stron internetowych i materiałów graficznych dla małych i średnich firm. Projektowanie identyfikacji wizualnych i systemów graficznych od podstaw.",
-    tags: ["HTML/CSS", "JavaScript", "Adobe CC", "WordPress"],
-  },
+
 ]
 
 const skillGroups = [
   {
     category: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    items: ["HTML/CSS", "JavaScript", "React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
   },
   {
     category: "Design",
-    items: ["Figma", "Design Systems", "UI/UX", "Typografia", "Branding"],
+    items: ["Figma", "Design Systems", "UI/UX", "Typografia", "Adobe CC", "Branding"],
   },
   {
     category: "Backend & Infrastruktura",
-    items: ["Node.js", "PostgreSQL", "Vercel", "Docker", "REST API"],
+    items: ["WordPress", "Node.js", "PostgreSQL", "Vercel", "Docker", "REST API"],
   },
   {
     category: "AI & Automatyzacja",
     items: ["LLM Integration", "Prompt Engineering", "n8n", "OpenAI API"],
+  },
+]
+
+const education = [
+  {
+    school: "Uniwersytet Civitas",
+    degree: "Studia magisterskie",
+    field: "Socjologia specjalizacja Nowe media",
+    period: "2014 — 2017",
+  },
+
+  {
+    school: "Szkoła Główna Gospodarstwa Wiejskiego",
+    degree: "Studia licencjackie",
+    field: "Kierunek Socjologia i Pedagogika, specjalizacja animacja społeczna z edukacją kulturalną",
+    period: "2011 — 2014",
+  },
+  {
+    school: "Warszawska Szkoła Reklamy",
+    degree: "Szkoła Policealna",
+    field: "Specjalizacja Strategia reklamy & PR",
+    period: "2012 — 2014",
   },
 ]
 
@@ -76,7 +91,7 @@ export default function CVPage() {
               Michał Zeprzałka
             </h1>
             <p className="text-xl text-muted-foreground">
-              Digital Solutions Architect
+              Digital Solutions Architect - Designer - AI Specialist
             </p>
           </div>
           <Button asChild variant="outline" size="sm" className="w-fit gap-2 shrink-0">
@@ -90,14 +105,14 @@ export default function CVPage() {
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <span className="flex items-center gap-2">
             <MapPin className="w-4 h-4 shrink-0" />
-            Polska
+            Polska, Warszawa
           </span>
           <a
-            href="mailto:kontakt@zeprzalka.com"
+            href="mailto:m@zeprzalka.com"
             className="flex items-center gap-2 hover:text-foreground transition-colors"
           >
             <Mail className="w-4 h-4 shrink-0" />
-            kontakt@zeprzalka.com
+            m@zeprzalka.com
           </a>
           <a
             href="https://zeprzalka.com"
@@ -126,9 +141,11 @@ export default function CVPage() {
             </span>{" "}
             w projektowaniu i wdrażaniu innowacyjnych rozwiązań webowych i
             multimedialnych. Łączę umiejętności techniczne z wrażliwością
-            projektową — tworzę produkty cyfrowe, które są równie funkcjonalne
-            co estetyczne. Specjalizuję się w architekturze design systemów,
-            integracji AI oraz budowie skalowalnych aplikacji.
+            projektową — tworzę produkty cyfrowe, które są funkcjonalne
+            i estetyczne. </p>
+          <br></br>
+          <p className="text-base leading-relaxed text-muted-foreground">
+            Specjalizuję się w design systemów, stron internetowych, integracji AI oraz budowie skalowalnych aplikacji. Mam duże doświadczenie w projektowaniu graficznym, animacji i tworzeniu materiałów wideo. Przez wiele lat byłem wykładowcą <span className="font-medium text-foreground">zdobywając Nagrodę Rektora</span> za najwyższą średnią ocen w ankietach studenckich: 99,28%.
           </p>
         </div>
       </section>
@@ -219,16 +236,23 @@ export default function CVPage() {
             Edukacja
           </h2>
         </div>
-        <div className="lg:col-span-9">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <h3 className="text-base font-semibold">Inżynier Informatyki</h3>
-              <p className="text-sm text-muted-foreground mt-1">Politechnika</p>
+        <div className="lg:col-span-9 space-y-8">
+          {education.map((edu, i) => (
+            <div key={i} className="flex items-start justify-between gap-4">
+              <div>
+                <h3 className="text-base font-semibold">{edu.school}</h3>
+                {edu.degree && (
+                  <p className="text-sm text-foreground mt-1">{edu.degree}</p>
+                )}
+                {edu.field && (
+                  <p className="text-sm text-muted-foreground mt-1">{edu.field}</p>
+                )}
+              </div>
+              <span className="text-sm text-muted-foreground shrink-0 tabular-nums">
+                {edu.period}
+              </span>
             </div>
-            <span className="text-sm text-muted-foreground shrink-0 tabular-nums">
-              2008 — 2012
-            </span>
-          </div>
+          ))}
         </div>
       </section>
 
