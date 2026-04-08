@@ -18,7 +18,7 @@ export function BlogC() {
               Blog
             </h2>
             <p className="text-muted-foreground lg:text-lg 2xl:text-xl mt-2 lg:mt-6 max-w-xs">
-              Myśli, analizy oraz moje projekty z pogranicza technologii i AI
+              Moje projekty i przemyślenia z pogranicza technologii i AI
             </p>
             <Button asChild variant="outline" size="sm" className="mt-6">
               <Link href="/blog">Wszystkie artykuły</Link>

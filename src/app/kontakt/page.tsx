@@ -17,6 +17,7 @@ const info = [
     value: "m@zeprzalka.com",
     href: "mailto:m@zeprzalka.com",
   },
+
   {
     icon: MapPin,
     label: "Lokalizacja",

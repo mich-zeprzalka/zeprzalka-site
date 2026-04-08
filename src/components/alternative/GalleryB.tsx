@@ -124,7 +124,7 @@ export function GalleryB() {
               Portfolio
             </h2>
             <p className="text-muted-foreground lg:text-lg 2xl:text-xl mt-2 lg:mt-6 max-w-xs">
-              Wszechstronne kompleksowe i innowacyjne realizacje
+              Wszechstronne, kompleksowe i innowacyjne realizacje
             </p>
           </div>
         </div>

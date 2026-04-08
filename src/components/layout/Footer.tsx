@@ -21,6 +21,18 @@ export function Footer() {
             <h3 className="font-semibold">Nawigacja</h3>
             <nav className="flex flex-col space-y-2">
               <Link
+                href="/blog"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Blog
+              </Link>
+              <Link
+                href="/o-mnie"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                O mnie
+              </Link>
+              <Link
                 href="/kontakt"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
@@ -56,7 +68,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t">
           <p className="text-center text-sm text-muted-foreground">
-            zeprzalka.com - next.js / tailwindcss / radix / shadcn
+            Michał Zeprzałka - Copyright {new Date().getFullYear()}
           </p>
         </div>
       </div>

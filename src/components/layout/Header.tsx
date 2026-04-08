@@ -5,7 +5,7 @@ import { MobileNav } from "@/components/layout/MobileNav"
 
 const navLinks = [
   { href: "/blog", label: "Blog" },
-  { href: "/cv", label: "CV" },
+  { href: "/o-mnie", label: "O mnie" },
   { href: "/kontakt", label: "Kontakt" },
 ]
 

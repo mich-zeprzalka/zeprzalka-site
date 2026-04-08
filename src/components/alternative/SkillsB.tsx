@@ -17,7 +17,7 @@ const skillsData = [
       "User Experience (UX)",
       "User Interface (UI)",
       "Human-Centered Design",
-      "AI Models",
+      "AI Solutions",
     ],
   },
   {
@@ -29,8 +29,10 @@ const skillsData = [
     tools: [
       "Next.js",
       "React",
-      "JavaScript",
       "HTML/CSS",
+      "Tailwind",
+      "JavaScript",
+      "TypeScript",
       "WordPress",
       "Vercel",
       "API",
@@ -42,7 +44,7 @@ const skillsData = [
     number: "03",
     title: "Komunikacja Wizualna",
     description:
-      "Tworzę spójną i angażującą komunikację – od brandingu i identyfikacji wizualnej, przez zaawansowaną grafikę cyfrową, po dynamiczne animacje. Dbam o to, by Twoja marka opowiadała historię i wyróżniała się na rynku.",
+      "Tworzę spójną i angażującą komunikację – od brandingu i identyfikacji wizualnej, przez zaawansowaną grafikę cyfrową, aż po dynamiczne animacje. Dbam o to, by Twoja marka opowiadała historię i wyróżniała się na rynku.",
     tools: [
       "Adobe Photoshop",
       "After Effects",

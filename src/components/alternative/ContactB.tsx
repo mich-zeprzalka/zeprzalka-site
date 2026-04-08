@@ -41,8 +41,7 @@ export function ContactB() {
                 Opowiedz o swoim projekcie
               </CardTitle>
               <CardDescription>
-                Wypełnij formularz, skontaktuję się z Tobą z propozycją i
-                wstępną wyceną.
+                Wypełnij formularz, im bardziej szczegółowy opis, tym bardziej precyzyjną wycenę otrzymasz.
               </CardDescription>
             </CardHeader>
             <CardContent className="p-0">

@@ -52,7 +52,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
       <PageHeader
         badge="Blog"
         title="Blog Technologiczny"
-        description="Odkryj najnowsze trendy w AI, web developmencie i strategiach biznesowych"
+        description="Odkryj najnowsze trendy w AI, Web Developmencie, Designie i technologii"
       />
 
       {/* Featured Posts — only on first page */}

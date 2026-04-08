@@ -223,7 +223,7 @@ export default async function BlogPost({ params }: PageProps) {
             <aside className="hidden lg:block lg:col-span-4 xl:col-span-3">
               <Sidebar
                 collapsible="none"
-                className="sticky top-24 !h-auto !w-full"
+                className="sticky top-24 !h-auto !w-full bg-transparent"
               >
                 <SidebarHeader>
                   <SidebarMenu>
