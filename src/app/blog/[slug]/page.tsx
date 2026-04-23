@@ -20,6 +20,7 @@ import type { Metadata } from "next"
 import { ActiveTOC } from "@/components/blog/ActiveTOC"
 import { ScrollToTop } from "@/components/ScrollToTop"
 import { CodeBlock } from "@/components/blog/CodeBlock"
+import { YouTubeEmbed } from "@/components/blog/YouTubeEmbed"
 import {
   Sidebar,
   SidebarContent,
@@ -41,6 +42,24 @@ import "./highlight.css"
 // MDX Components
 const mdxComponents = {
   Button,
+  YouTubeEmbed,
+  Image: ({
+    src,
+    alt,
+    width,
+    height,
+    className,
+    ...props
+  }: React.ComponentProps<typeof Image>) => (
+    <Image
+      src={src}
+      alt={alt ?? ""}
+      width={width ?? 1280}
+      height={height ?? 720}
+      className={"rounded-lg shadow-md my-6 w-full h-auto " + (className ?? "")}
+      {...props}
+    />
+  ),
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       {...props}
@@ -245,7 +264,7 @@ export default async function BlogPost({ params }: PageProps) {
             </aside>
 
             {/* Article Content */}
-            <article className="lg:col-span-8 xl:col-span-9">
+            <article className="lg:col-span-6 xl:col-span-7">
               {/* Header */}
               <header className="mb-12">
                 <Breadcrumb className="mb-6">

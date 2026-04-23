@@ -1,0 +1,107 @@
+---
+title: "Claude Design – czy zastąpi Figmę?"
+description: "Claude Design jest nowym narzędziem Antropic, które ma stać się bezpośrednim konkurentem figmy, a może jednak bardziej Google Stitch? Na kliku realnych przykładach postaram się sprawdzić narzędzie i w praktyczny sposób dowiedzieć się czy rzeczywiście jest, aż tak dobre?"
+date: "2026-04-23"
+categories: ["AI", "Design", "UX", "UI"]
+tags:
+  [
+    "Claude Design",
+    "AI",
+    "Design",
+    "UX",
+    "UI",
+    "Landing Page",
+  ]
+image: "/blog/socontent-new.jpg"
+imageCaption: "Logo Claude Design"
+featured: true
+---
+
+Projektanci, a w szczególności UX/UI Designerzy mają się znowu czego obawiać? Claude Design nie do końca jest narzędziem stricte projektowym. Jest to raczej narzędzie do jednorazowych zadań, które może wygenerować ciekawą podstawę wizualną do rozbudowania projektu.
+
+Jest to w rzeczywistości bazowy Claude, uzupełniony o odpowiednie wytyczne w plikach `.md`. Aplikacja generuje kod React, z którym Claude radzi sobie bardzo dobrze.
+
+---
+
+## 🎬 Dwie perspektywy – obejrzyj przed lekturą
+
+Zanim przejdę do własnych testów i przemyśleń, warto zobaczyć dwa punkty widzenia. Pierwszy to krytyczna analiza, drugi – entuzjastyczna ocena skupiająca się na potencjale produkcyjnym.
+
+### Malewicz – krytyczne spojrzenie na Claude Design
+
+<YouTubeEmbed id="IkspcJdeP3U" title="Malewicz – Czy Claude Design jest dobry?" />
+
+Michał Malewicz uważa, że nadal jest to narzędzie, które nie tworzy projektów, nawet na poziomie średniego designera. Dostrzega wiele błędów i niedociągnięć generowanych projektów. W gruncie rzeczy Claude Design jest rzeczywiście jedynie nakładką na Claude. Dodatkowo dysponującą polami do szybkiej edycji designu, oraz możliwością zaznaczania i komentowania konkretnych elementów layoutu.
+
+Rozumiem również argument, odnośnie tego, że jest to narzędzie, ktróre niweluje konieczność przeglądania internetu i daje złudne poczucie interaktywnego tworzenia projektu strony, we współpracy z AI. Jednak u podstaw tego procesu nadal są szablony i gotowe rozwiązania, które AI interpretuje i redefiniuje na nowo. Dawniej po prostu wybierało się template z internetu, płaciło 20$, przerabiało go pod ustalenia klienta i po wszystkim. Czasowo w niektórych przypadkach mogło dawać to podobny rezultat pracy i wcale nie jest to ogromna rewolucja w projektowaniu i wdrażaniu serwisów internetowych.
+
+Często też ludzie nawet nie wiedzą co wpisać w prompcie. Nie potrafią zdefiniować, czego rzeczywiście potrzebują i muszą kupować prompty w celu wygenerowania strony. Dodatkowo osoby, które mają do czynienia z kodowaniem i vibe codingiem, doskonale zdają sobię sprawę z tego, że projekty wymagają wielu poprawek, gdzie często wiedza techniczna jest konieczna do uzyskania odpowiedniego rezultatu.
+
+### A może jednak remedium na wszystko?
+
+<YouTubeEmbed id="2vWVGIQF5S0" title="Entuzjaści AI – Claude Design jako kamień milowy vibe codingu" />
+
+Po drugiej stronie barykady mamy entuzjastów AI, którzy twierdzą, że to kolejny kamień milowy przyspieszający wdrożenia oparte o vibe coding. W moim odczuciu takich opinii jest zdecydowanie więcej. Z pewnego punktu widzenia również zgadzam się z wieloma argumentami, idącymi w tym kierunku.
+
+W kilka minut otrzymuję rezultat, nad którym pracowałbym "ręcznie" ładnych kilka godzin. Nie wiem, czy uzyskałbym podobny poziom kreatywności, w dodatku mam kilka ciekawych koncepcji gotowych od ręki. Może i mają sporo niedociągnięć, ale w końcu można je poprawić w dalszej fazie projektu, a wygenerowany layout stanowi dobre podłoże pomysłu kreatywnego oraz kierunku, w którym powinienem kontynuować projekt.
+
+---
+
+## 🧪 Testy praktyczne Claude Design
+
+Niezależnie od założenia z jakiego wyjdziemy, nie zmienia to faktu, że jest to narzędzie, które może być bardzo przydatne w procesie tworzenia stron i aplikacji. Przetestowałem Claude Design w kilku podstawowych próbach. Zobaczmy jakie rezultaty udało mi się uzyskać.
+
+### Test 1 – Redesign strony socontent
+
+[socontent.marketing](https://socontent.marketing)
+
+<Image src="/blog/socontent.jpg" alt="socontent website" />
+
+Strona, którą napisałem ręcznie w semantycznym HTML i SCSS w kilka dni. Od koncepcji, przez copy do gotowego wdrożenia, w najszybszy możliwy sposób. Prosta, minimalistyczna strona, zrobiona w celu pokazania klientom zleceń. 
+
+Zacząłem od prostego promtu dotyczącego redesignu, ale ciekawy jest fakt, że Claude Design sam generuje podstawowy brief, ułatwiając otrzymanie oczekiwanego rezultatu. Dopytuje o szczegóły i podobnie jak Designer w procesie współpracy z klientem zadaje kluczowe pytania dotyczące projektu.
+
+Jak na one shoot bez edycji promptu w moim odczuciu efekt bardzo dobry. Fakt strona ma liczne niedociągnięcia, ale w kontekście pomysłu kreatywnego stanowi bardzo mocną propozycję.
+
+<Image src="/blog/socontent-new.jpg" alt="Claude Design proposition" />
+
+Po eksporcie zaczynają się problemy, HTML jest de facto elementem włączającym plik `.jsx`. Dodatkowo strona ma dość spore problemy z responsywnością. Jako koncepcja bardzo ciekawe i mogące stanowić podłoże do dalszych prac, jako gotowy projekt do publikacji niekoniecznie.
+
+Jednak poszedłem o krok dalej. Wyeksportowałem plik z Claude Design, wrzuciłem go do IDE, w Claude CLI wpisałem prompt dotyczący przekształcenia całości, na responsywną stronę opartą o next, tailwind i shadcn. Rezultat określiłbym na co najmniej dobry, lub nawet bardzo dobry. Poniżej linki do dema:
+
+- [socontent.marketing – test 1](https://socontent-test.vercel.app/)
+- [socontent.marketing – test 2](https://socontent-test.vercel.app/landing-b)
+- [socontent.marketing – test 3](https://socontent-test.vercel.app/landing-c)
+
+### Test 2 – Sekcja HERO dla firmy AI
+
+Również one shoot, bez żadnych ściśle określonych reguł. Firma zajmująca się automatyzacjami AI. Wygenerowane przykłady z przesuwanymi myszką kafelkami służącymi do wizualizacji procesu automatyzacji, lub animowany modal, wyświetlający przechodzenie procesu automatyzacji w postaci listy zadań, to bardzo mocne pomysły kreatywne. I tak może jakość wykonania pozostawia sporo do życzenia, ale kilka promptów w połączeniu z ręczną pracą w kodzie i przeniesienie tego np. do tailwinda z shadcn i późniejsza praca z projektem w kodzie, mogłaby w szybki sposób dać ciekawy solidny rezultat.
+
+<Image src="/blog/ai-automation.jpg" alt="Claude Design proposition" />
+
+### Test 3 - redesign strony zeprzalka.com
+
+<Image src="/blog/zeprzalka-com.jpg" alt="zeprzalka" />
+
+Szewc bez butów chodzi. Obecna wersja mojej strony, była ćwiczeniem związanym z next.js + shadcn i powstała głównie w celu przekazania studentom materiałów na zajęcia. Usiadłem i napisałem ją prawie całkowicie ręcznie od zera w kilka dni.
+
+Analogioczna sytuacja jak w pierwszym teście. Prompt, bez żadnych obrazków referencyjnych, głównie opis, mający na celu zachowanie prostego charakteru obecnej strony. Rezultat, lepszy niż się spodziewałem. Kilka koncepcji wyszło bardzo interesująco i z pewnością wykorzystam niektóre pomysły na komponenty,. przy nadchodzącej przebudowie strony. Niektóre elementy wyglądają na bardzo dopracowane i mają seniorski sznyt. Tak jak poprzednio tu również mamy problemy z nachodzącymi na siebie elementami, albo niekoniecznie poprawnym wyświetlaniem, niektórych elementów. Jednak nadal jest to dobry fundament do rozbudowy i wykorzystania kilku elementów kreatywnych.
+
+- [zeprzalka.com – test 1](https://zeprzalka-test.vercel.app/)
+- [zeprzalka.com – test 2](https://zeprzalka-test.vercel.app/landing-page-b)
+- [zeprzalka.com – test 3](https://zeprzalka-test.vercel.app/landing-page-c)
+- [zeprzalka.com – test 4](https://zeprzalka-test.vercel.app/landing-page-d)
+
+---
+
+## ✅ Podsumowanie
+
+### Czy jest to przełom we wdrażaniu stron i aplikacji?
+
+Nie sądzę, aby był to jakiś gigantyczny przełom. Z pewnością jest to kolejna cegiełka przyspieszająca i ułatwiająca wdrożenie ciekawej wizualnie strony lub aplikacji. Nie zastąpi również raczej figmy, jest to narzędzie z nieco innego segmentu. 
+
+Jest to z kolei bardzo interesujące narzędzie z punktu widzenia vibe coderów, jako dodatek do stacku. Zanim wpiszemy prompt dla claude w terminalu, możemy wstępnie zwizualizować layout. Ograniczy to sporą ilość pracy bezpośrednio w edytorze kodu. Kolejną sprawą jest to, że z czasem prawdopodobnie narzędzie będzie coraz lepsze. Może w najbliższym czasie stanie się elementem jakiegoś bardziej złożonego ekoystemu Claude do generowania całych serwisów i aplikacji wraz z gotowym kodem i deploymentem? Czas pokaże, jak na tę chwilę to ciekawa propozycja kolejne narzędzie do współpracy, które zawsze da nam jakiś ciekawy pomysł i dorzuci swoje trzy grosze do koncepcji wizualnej naszego projektu. 
+
+---
+
+**Pytania? ** Napisz do mnie m@zeprzalka.com
