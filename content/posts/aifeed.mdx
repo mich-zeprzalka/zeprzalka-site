@@ -1,0 +1,64 @@
+---
+title: "aifeed.pl - serwis z nowościami ze świata AI"
+description: "Zapraszam do zapoznania się z moim nowym projektem, serwisem internetowym, który agreguje i udostępnia aktualności ze świata sztucznej inteligencji."
+date: "2026-04-29"
+categories: ["AI", "Projekty", "Technologia"]
+tags:
+  [
+    "AI",
+    "aifeed",
+    "Next.js",
+    "Supabase",
+    "Automatyzacja",
+  ]
+image: "/blog/ai-feed.jpg"
+imageCaption: "aifeed.pl"
+featured: true
+---
+
+Od dawna planowałem założenie serwisu informacyjnego z newsami o AI. Pierwsze próby podejmowałem już około rok temu korzystając między innymi z API - https://newsapi.org/. Postanowiłem jednak pójść o krok dalej. A co jeżeli udałoby się stworzyć autonomiczny serwis, który codziennie skanuje i analizuje największe serwisy ogólnoświatowe. Następnie tworzy ranking wpisów, a najlepsze z nich interpretuje na język polski wyciągając meritum oraz podając link do źródła?
+
+Tak własnie powstał aifeed, jako jedno z zadań walki z projektową prokrastynacją. Nie skupiałem się na tym, aby wszystko działało na tym etapie idealnie. Oczywiście rozwój serwisu i próba dążenia do perfekcji, to plan nadrzędny, jednak od pewnego czasu staram się kierować regułą, lepszy wróbel w garści niż gołąb na dachu.
+
+Dziesiątki obrośniętych pajęczyną repozytoriów na git i setki podobnych folderów na dysku komputera, nawet z najczystrzym i najlepszym kodem, zawsze będą gorsze niż namacalna apliklacja lub serwis internetowy w fazie realnych testów. Jeden dzień pracy zamiast kilku miesięcy dłubania w kodzie, a następnie odrzucenia czegoś w kąt zawsze jest lepszą opcją.
+
+---
+
+## ⚙️ Główne założenia działania projektu
+
+Po pierwsze wszystko ma działać :) Nie tworzyłem w głowie wizji idealnego kodu, niesamowitego UX/UI Designu i przełomowego wykorzystania metod SEO i optymalizacji. Chciałem jedynie wykonać typowy feed w postaci internetowego serwisu informacyjnego. Jeżeli miałbym to rozbić na bardzo podstawowy pseudokod zawierałby on kilka kluczowych instrukcji:
+
+- serwis skanuje trzy razy dziennie około trzydziestu najpopularniejszych serwisów i blogów o AI. Zarówno magazyny informacyjne, jak i blogi firmowe brandów związanych ze sztuczną inteligencją
+- dochodzi do stworzenia rankingu przeczytanych newsów, według precyzyjnego algorytmu nadającego wagi punktowe każdemu z artykułów. Jeżeli artykuł nie spełnia standardu i osiąga wynik niższy niż założony w dopuszczeniu do publikacji, zostaje odrzucony
+- następnie na bazie wpisu (np. z zagranicznego serwisu) tworzona jest polska wersja artykułu z odnośnikiem do oryginału. Również tutaj mamy określone wytuczne zwiekszające konwersję, między innymi podsumowanie najważniejszych aspektów news’a już na samej górze “posta”
+- autorski artykuł wysyłany jest do bazy w supabase i archiwizowany. aifeed.pl oparty jest o next.js, który łączy się z bazą i pobiera wpisy do serwisu
+
+Mamy tu styczność z całkowitą automatyzacją generowanych treści. Niewiele pamiętam ze studiów magisterskich, ale w tym miejscu przypomina mi się jedna rzecz z wykładów. Lev Manovich. który już wiwle lat temu przepowiadał taki obrót spraw. Parafrazując, mówił on o tym, że w niedalekiej przyszłości serwisy internetowe, czy bazy danych będą generowały się samoistnie w sposób zautomatyzowany nie potrzebując do tego na pewnym etapie czynnika ludzkiego. Wraz z rozwojem AI właśnie dopłynęliśmy to tego miejsca w rozwoju technologii
+
+---
+
+## 🎯 Cele projektu
+
+Główną ideą, która mi przyświecała była synteza najnowszych informacji dotyczących sztucznej inteligencji dla polskiego użytkownika. Pewnie istnieją dzisiątki tego typu narzedzi, o których nie wiem, jednak większość z nich skrojona jest na rynek anglojęzyczny. Rozumiem również, że bariera językowa przestaje być obecnie przeszkodą, jednak mimo wszystko często sam wolę przeglądać różnego rodzaju polskie serwisy i feedy.
+
+De facto tworzę serwis dla siebie. Agent, który jest w stanie przejrzeć dzisiątki serwisów, wybrać najciekawsze informacje i przedstawić je w formie angażujących treści, jest ciekawą alternatywą dla osób, które chcą mieć dawkę najważniejszych informacji ze świata AI w łatwej i przystępnej formie.
+
+Wiele serwisów, które analizuje moja strona to bardzo specjalistyczne portale dotyczące badań i technologii, często pisane enigamtycznym naukowym żargonem. Dlatego też w tym wypadku kolejnym istotnym elementem była demokratyzacja treści i przetłumaczenia ich na mniej specjalistyczny język.
+
+Dodatkowo posiadanie takiego serwisu jest pewną inwestycją i daje spore pole do manewru na kilku płaszczyznach. Między innymi budowanie marki osobistej (brzydze się tym sformuowaniem, ale nich będzie) , możliwość brania udziału w wydarzeniach branżowych, czy też licznego rodzaju eksperymenty związane ze zbieraniem danych w nowej dziedzinie, z którą łączę swoją przyszłość.
+
+---
+
+## 🚀 Dalszy rozwój projektu
+
+Przedewszystkim ogólne udoskonalenie serwisu. Jest on obecnie w fazie testów i ulepszania. Tak jak wspominałem wczesniej nie chciałem tracić setek godzin na bezkresne dopracowywanie serwisu. Dlatego też następne tygodnie będę poświęcał na testy, walidację kodu oraz jego optymalizacje w szczególności pod kątem SEO.
+
+Następny etap to spięcie serwizu z mediami społecznościowymi i repostowanie treści na wszystkie możliwe kanały. Może w przyszłości pokusze się o bardziej angażujący kontent w postaci rolek tworzonych na Instagram i TikTok generowanych na bazie kontentu z moich wpisów.
+
+Trzecią ciekawą perspektywą monetyzacji przedsięwzięcia jest moje zamiłowania do analizy danych i predykcji. Poziadanie bazy danych z analizą nowości na temat AI daje możlisość eksperymentowania z obróbką informacji w niej zawartych. Na podstawie tego w przyszłości chciałbym stworzyć algorytm, który w obszarze serwisu, będzie tworzył analizy sentymentu w różnych obszarach związanych ze sztuczną inteliogencją, dają użytkownikom ciekawe spojrzenie na możliwe scenariusze rozwoju firm, technologii i zjawisk występójących w świecie sieci neuronowych.
+
+---
+
+## ✅ Podsumowanie
+
+Przedewszystkim zapraszam do korzystania i testowania aifeed.pl. Każda uwaga dotycząca serwisu będzie cenna. Na tym etapie jest to dopiero MVP, ale w następnych tygodniach uda się stwoprzyć pełnoprawną wersję produkcyjną z dopracowanym designem i strukturą serwisu. Co jakiś czas będę wrzucał informacje dotyczące realizacji założeń i rozwoju serwisu. Zapraszam do śledzenia postępów i propozycji współpracy w obszarze rozwoju tego przedsięwzięcia

@@ -169,6 +169,11 @@ export async function generateMetadata({
     return {}
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://zeprzalka.com"
+  const imageUrl = post.frontmatter.image 
+    ? (post.frontmatter.image.startsWith("http") ? post.frontmatter.image : `${siteUrl}${post.frontmatter.image}`)
+    : `${siteUrl}/avatar.png`
+
   return {
     title: post.frontmatter.title,
     description: post.frontmatter.description,
@@ -178,13 +183,20 @@ export async function generateMetadata({
       type: "article",
       publishedTime: post.frontmatter.date,
       authors: [post.frontmatter.author?.name || "Autor"],
-      images: [post.frontmatter.image],
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.frontmatter.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.frontmatter.title,
       description: post.frontmatter.description,
-      images: [post.frontmatter.image],
+      images: [imageUrl],
     },
   }
 }
